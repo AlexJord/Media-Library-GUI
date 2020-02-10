@@ -18,7 +18,9 @@ if __name__ == "__main__":
     datafile.close()    
     root = tk.Tk()
     root.title("Game Lib")
-    root.geometry("500x500") 
+    root.geometry("500x500")
+    main_menu = MainMenu()
+    main_menu.grid(row = 0, column = 0)
     
     
     root.mainloop()
@@ -27,4 +29,4 @@ if __name__ == "__main__":
         def __init__(self):
             tk.Frame.__init__(self)
             self.lbl_title = tk.Label(text = "Game Library", font = TITLE_FONT)
-            lbl_title.grid(row = 0, column = 0, sticky = "news")
+            self.lbl_title.grid(row = 0, column = 0, sticky = "news")
