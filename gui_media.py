@@ -11,6 +11,12 @@ from tkinter import scrolledtext
 TITLE_FONT = ("Times New Roman", 24)
 BUTTON_FONT = ("Arial", 15)
 
+class MainMenu(tk.Frame):
+    def __init__(self):
+        tk.Frame.__init__(self)
+        self.lbl_title = tk.Label(text = "Game Library", font = TITLE_FONT)
+        self.lbl_title.grid(row = 0, column = 0, sticky = "news")
+
 ##MAIN
 if __name__ == "__main__":
     datafile = open("game_lib.pickle", "rb")
@@ -25,8 +31,4 @@ if __name__ == "__main__":
     
     root.mainloop()
     
-    class MainMenu(tk.Frame):
-        def __init__(self):
-            tk.Frame.__init__(self)
-            self.lbl_title = tk.Label(text = "Game Library", font = TITLE_FONT)
-            self.lbl_title.grid(row = 0, column = 0, sticky = "news")
+    
