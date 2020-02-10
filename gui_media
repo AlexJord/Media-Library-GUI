@@ -16,3 +16,8 @@ if __name__ == "__main__":
     datafile = open("game_lib.pickle", "rb")
     games = pickle.load(datafile)
     datafile.close()    
+    root = tk.Tk()
+    root.title("Game Lib")
+    root.geometry("500x500") 
+    
+    root.mainloop()
