@@ -30,7 +30,6 @@ if __name__ == "__main__":
     main_menu = MainMenu()
     main_menu.grid(row = 0, column = 0)
     
-    
     root.mainloop()
     
     
