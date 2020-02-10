@@ -16,6 +16,8 @@ class MainMenu(tk.Frame):
         tk.Frame.__init__(self)
         self.lbl_title = tk.Label(text = "Game Library", font = TITLE_FONT)
         self.lbl_title.grid(row = 0, column = 0, sticky = "news")
+        self.btn_add = tk.Button(text = "Add", font = BUTTON_FONT)
+        self.btn_add.grid(row = 1, column = 0)
 
 ##MAIN
 if __name__ == "__main__":
