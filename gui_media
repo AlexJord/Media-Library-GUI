@@ -7,3 +7,12 @@
 import pickle
 import tkinter as tk
 from tkinter import scrolledtext
+
+TITLE_FONT = ("Times New Roman", 24)
+BUTTON_FONT = ("Arial", 15)
+
+##MAIN
+if __name__ == "__main__":
+    datafile = open("game_lib.pickle", "rb")
+    games = pickle.load(datafile)
+    datafile.close()    
