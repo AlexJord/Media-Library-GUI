@@ -31,6 +31,8 @@ class SearchMenu(tk.Frame):
         self.lbl_search2 = tk.Label(text = "Search for: ", font = BUTTON_FONT)
         self.lbl_search2.grid(row = 3, column = 0, sticky = "news")        
         
+               
+        
         self.ent_box1 = tk.Entry()
         self.ent_box1.grid(row = 2, column = 0)
         
