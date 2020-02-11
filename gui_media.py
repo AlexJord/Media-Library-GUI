@@ -8,6 +8,7 @@ import pickle
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
 
+
 TITLE_FONT = ("Times New Roman", 24)
 BUTTON_FONT = ("Arial", 15)
 
