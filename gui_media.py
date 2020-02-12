@@ -66,13 +66,29 @@ class BTN_Filters(tk.Frame):
         self.publisher = tk.Checkbutton(self, text = "Publisher")
         self.publisher.grid(row = 3, column = 0, sticky = "news")     
         
-        
         self.system = tk.Checkbutton(self, text = "System")
         self.system.grid(row = 0, column = 1, sticky = "news")  
         
         self.release = tk.Checkbutton(self, text = "Release Date")
-        self.release.grid(row = 1, column = 1, sticky = "news")        
+        self.release.grid(row = 1, column = 1, sticky = "news")   
+        
+        self.rating = tk.Checkbutton(self, text = "Rating")
+        self.rating.grid(row = 2, column = 1, sticky = "news")        
+        
+        self.category = tk.Checkbutton(self, text = "Category")
+        self.category.grid(row = 3, column = 1, sticky = "news")        
+        
+        self.price = tk.Checkbutton(self, text = "Price")
+        self.price.grid(row = 0, column = 2, sticky = "news")     
+        
+        self.beat = tk.Checkbutton(self, text = "Beat Game")
+        self.beat.grid(row = 1, column = 2, sticky = "news")        
             
+        self.date = tk.Checkbutton(self, text = "Purchase Date")
+        self.date.grid(row = 2, column = 2, sticky = "news") 
+        
+        self.notes = tk.Checkbutton(self, text = "Notes")
+        self.notes.grid(row = 3, column = 2, sticky = "news")        
          
 class OptFrame(tk.Frame):
     def __init__(self): 
