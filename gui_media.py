@@ -40,10 +40,19 @@ class SearchMenu(tk.Frame):
         
         self.ent_box1 = tk.Entry()
         self.ent_box1.grid(row = 2, column = 0)
+        options = ["one", "two"]
+        self.tkvar = tk.StringVar(self)
+        self.tkvar.set(options[0])
+        self.ent_box1 = tk.OptionMenu(self, self.tkvar, *options)
+        self.ent_box1.grid(row = 2, column = 0)        
         
         self.ent_box2 = tk.Entry()
         self.ent_box2.grid(row = 4, column = 0)
-        
+        options = ["one", "two"]
+        self.tkvar = tk.StringVar(self)
+        self.tkvar.set(options[0])
+        self.ent_box2 = tk.OptionMenu(self, self.tkvar, *options)
+        self.ent_box2.grid(row = 4, column = 0)        
         
         
         self.scrolled_text = ScrolledText()
@@ -90,18 +99,8 @@ class BTN_Filters(tk.Frame):
         self.notes = tk.Checkbutton(self, text = "Notes")
         self.notes.grid(row = 3, column = 2, sticky = "news")        
          
-class OptFrame(tk.Frame):
-    def __init__(self): 
-        tk.Frame.__init__(self)
-        options = ["one", "two"]
-        self.tkvar = tk.StringVar(self)
-        tkvar.set(options[0])
-        self.menu = tk.OptionMenu(self, tk.var * options)
-        self.menu.grid(row = 0, column = 0)
-        
-        
-        
-        
+
+                
         
 
 ##MAIN
