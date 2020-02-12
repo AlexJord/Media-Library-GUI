@@ -45,7 +45,7 @@ class SearchMenu(tk.Frame):
         self.tkvar.set(options[0])
         self.ent_box1 = tk.OptionMenu(self, self.tkvar, *options)
         self.ent_box1.grid(row = 2, column = 0)        
-        
+         
         self.ent_box2 = tk.Entry()
         self.ent_box2.grid(row = 4, column = 0)
         options = ["one", "two"]
