@@ -57,8 +57,14 @@ class BTN_Filters(tk.Frame):
         self.title = tk.Checkbutton(self, text = "Title")
         self.title.grid(row = 0, column = 0, sticky = "news")
         
-        self.title = tk.Checkbutton(self, text = "Genre")
-        self.title.grid(row = 1, column = 0, sticky = "news")        
+        self.genre = tk.Checkbutton(self, text = "Genre")
+        self.genre.grid(row = 1, column = 0, sticky = "news")
+        
+        self.developer = tk.Checkbutton(self, text = "Developer") 
+        self.developer.grid(row = 2, column = 0, sticky = "news")   
+        
+        self.publisher = tk.Checkbutton(self, text = "Publisher")
+        self.publisher.grid(row = 3, column = 0, sticky = "news")        
         
             
          
