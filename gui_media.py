@@ -36,24 +36,17 @@ class SearchMenu(tk.Frame):
         self.lbl_search2 = tk.Label(text = "Search for: ", font = BUTTON_FONT)
         self.lbl_search2.grid(row = 3, column = 0, sticky = "news")        
         
-               
-        
-        self.ent_box1 = tk.Entry()
-        self.ent_box1.grid(row = 2, column = 0)
         options = ["one", "two"]
         self.tkvar = tk.StringVar(self)
         self.tkvar.set(options[0])
         self.ent_box1 = tk.OptionMenu(self, self.tkvar, *options)
-        self.ent_box1.grid(row = 2, column = 0)        
+        self.ent_box1.grid(row = 2, column = 0, sticky = "news")        
          
         self.ent_box2 = tk.Entry()
-        self.ent_box2.grid(row = 4, column = 0)
-        options = ["one", "two"]
-        self.tkvar = tk.StringVar(self)
-        self.tkvar.set(options[0])
-        self.ent_box2 = tk.OptionMenu(self, self.tkvar, *options)
-        self.ent_box2.grid(row = 4, column = 0)        
+        self.ent_box2.grid(row = 4, column = 0, sticky = "news")     
         
+        btn_filters = BTN_Filters()
+        btn_filters.grid(row = 1, column = 1)        
         
         self.scrolled_text = ScrolledText()
         self.scrolled_text.grid(row = 5, column = 0, columnspan = 3)    
@@ -117,9 +110,6 @@ if __name__ == "__main__":
     
     search_menu = SearchMenu()
     search_menu.grid(row = 0, column = 0)
-    
-    btn_filters = BTN_Filters()
-    btn_filters.grid(row = 1, column = 1)
     
     root.grid_rowconfigure(0, weight = 1)
     root.grid_columnconfigure(0, weight = 1)
