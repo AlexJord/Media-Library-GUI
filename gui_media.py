@@ -21,10 +21,10 @@ class MainMenu(tk.Frame):
         self.btn_add.grid(row = 1, column = 0)       
         
 class SubFrame(tk.Frame):
-    def __init__(self, SearchMenu): 
-        tk.Frame.__init__(self, master=SearchMenu)
+    def __init__(self, parent): 
+        tk.Frame.__init__(self, master=parent)
         
-        self.btn_one = tk.Button(self, master=SearchMenu)
+        self.btn_one = tk.Button(self, master=parent)
         self.btn_one.grid(row = 0, column = 0)
         self.btn_two = tk.Button(self, text = "Yes")
         self.btn_two.grid(row = 0, column = 1)
