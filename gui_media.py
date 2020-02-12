@@ -47,7 +47,14 @@ class SearchMenu(tk.Frame):
         
         
         self.scrolled_text = ScrolledText()
-        self.scrolled_text.grid(row = 5, column = 0, columnspan = 3)        
+        self.scrolled_text.grid(row = 5, column = 0, columnspan = 3)    
+        
+        
+class Filters(tk.Frame):
+    def __init__(self):
+        tk.Frame.__init__(self)
+        
+        
         
         
             
