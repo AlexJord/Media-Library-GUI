@@ -20,6 +20,24 @@ class MainMenu(tk.Frame):
         self.btn_add = tk.Button(text = "Add", font = BUTTON_FONT)
         self.btn_add.grid(row = 1, column = 0)       
         
+class SubFrame(tk.Frame):
+    def __init__(self, SearchMenu): 
+        tk.Frame.__init__(self, master=SearchMenu)
+        
+        self.btn_one = tk.Button(self, master=SearchMenu)
+        self.btn_one.grid(row = 0, column = 0)
+        self.btn_two = tk.Button(self, text = "Yes")
+        self.btn_two.grid(row = 0, column = 1)
+        
+class AppFrame(tk.Frame):
+    def __init__(self):
+        tk.Frame.__init__(self)
+        self.lbl = tk.Label(self, text = "No")
+        self.lbl.grid(row = 0, column = 0)
+        self.frame_buttons = SubFrame(self)
+        self.frame_buttons.grid(row = 1, column = 0) 
+    
+        
 class SearchMenu(tk.Frame):
     def __init__(self):
         tk.Frame.__init__(self)
