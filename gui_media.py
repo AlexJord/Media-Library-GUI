@@ -64,8 +64,14 @@ class BTN_Filters(tk.Frame):
         self.developer.grid(row = 2, column = 0, sticky = "news")   
         
         self.publisher = tk.Checkbutton(self, text = "Publisher")
-        self.publisher.grid(row = 3, column = 0, sticky = "news")        
+        self.publisher.grid(row = 3, column = 0, sticky = "news")     
         
+        
+        self.system = tk.Checkbutton(self, text = "System")
+        self.system.grid(row = 0, column = 1, sticky = "news")  
+        
+        self.release = tk.Checkbutton(self, text = "Release Date")
+        self.release.grid(row = 1, column = 1, sticky = "news")        
             
          
 class OptFrame(tk.Frame):
