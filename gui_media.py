@@ -50,12 +50,15 @@ class SearchMenu(tk.Frame):
         self.scrolled_text.grid(row = 5, column = 0, columnspan = 3)    
         
         
-class Filters(tk.Frame):
+class BTN_Filters(tk.Frame):
     def __init__(self):
         tk.Frame.__init__(self)
         
+        self.title = tk.Checkbutton(self, text = "Title")
+        self.title.grid(row = 0, column = 0, sticky = "news")
         
-        
+        self.title = tk.Checkbutton(self, text = "Genre")
+        self.title.grid(row = 1, column = 0, sticky = "news")        
         
             
          
@@ -87,6 +90,9 @@ if __name__ == "__main__":
     
     search_menu = SearchMenu()
     search_menu.grid(row = 0, column = 0)
+    
+    btn_filters = BTN_Filters()
+    btn_filters.grid(row = 1, column = 1)
     
     root.grid_rowconfigure(0, weight = 1)
     root.grid_columnconfigure(0, weight = 1)
