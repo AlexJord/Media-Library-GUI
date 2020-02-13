@@ -126,7 +126,17 @@ class Edit_Menu(tk.Frame):
     def __init__(self):
         tk.Frame.__init__(self)    
 
-                
+        self.lbl_title = tk.Label(self, text = "Which title to edit: ", font = TITLE_FONT)
+        self.lbl_title.grid(row = 0, column = 1, sticky = "news") 
+        
+        options = ["one", "two"]
+        self.tkvar = tk.StringVar(self)
+        self.tkvar.set(options[0])
+        self.ent_box1 = tk.OptionMenu(self, self.tkvar, *options)
+        self.ent_box1.grid(row = 2, column = 1, sticky = "news")         
+        self.grid_columnconfigure(0, weight = 1)
+        self.grid_columnconfigure(1, weight = 1)
+        self.grid_columnconfigure(2, weight = 1)
         
 
 ##MAIN
