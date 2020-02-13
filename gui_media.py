@@ -15,26 +15,55 @@ BUTTON_FONT = ("Arial", 15)
 class MainMenu(tk.Frame):
     def __init__(self):
         tk.Frame.__init__(self)
-        self.lbl_title = tk.Label(text = "Game Library", font = TITLE_FONT)
-        self.lbl_title.grid(row = 0, column = 0, sticky = "news")
-        self.btn_add = tk.Button(text = "Add", font = BUTTON_FONT)
-        self.btn_add.grid(row = 1, column = 0)       
+        self.lbl_title = tk.Label(self, text = "Game Library", font = TITLE_FONT)
+        self.lbl_title.grid(row = 0, column = 0, columnspan = 3, sticky = "news")
+        self.btn_add = tk.Button(self, text = "Add", font = BUTTON_FONT)
+        self.btn_add.grid(row = 1, column = 1)
+        
+        self.btn_edit = tk.Button(self, text = "Edit", font = BUTTON_FONT)
+        self.btn_edit.grid(row = 2, column = 1)        
+        
+        self.btn_search = tk.Button(self, text = "Search", font = BUTTON_FONT)
+        self.btn_search.grid(row = 3, column = 1)
+        
+        self.btn_remove = tk.Button(self, text = "Remove", font = BUTTON_FONT)
+        self.btn_remove.grid(row = 4, column = 1)    
+        
+        self.btn_save = tk.Button(self, text = "Save", font = BUTTON_FONT)
+        self.btn_save.grid(row = 5, column = 1)        
+        
+        self.grid_columnconfigure(0, weight = 1)
+        self.grid_columnconfigure(1, weight = 1)
+        self.grid_columnconfigure(2, weight = 1)
         
         
         
-    
+        
         
 class SearchMenu(tk.Frame):
     def __init__(self):
         tk.Frame.__init__(self)
-        self.lbl_title = tk.Label(text = "Search", font = TITLE_FONT)
+        self.lbl_title = tk.Label(self, text = "Search", font = TITLE_FONT)
         self.lbl_title.grid(row = 0, column = 0, sticky = "news")
         
-        self.lbl_search = tk.Label(text = "Search by: ", font = BUTTON_FONT)
+        self.lbl_search = tk.Label(self,text = "Search by: ", font = BUTTON_FONT)
         self.lbl_search.grid(row = 1, column = 0, sticky = "news")
         
-        self.lbl_search2 = tk.Label(text = "Search for: ", font = BUTTON_FONT)
+        self.lbl_search2 = tk.Label(self,text = "Search for: ", font = BUTTON_FONT)
         self.lbl_search2.grid(row = 3, column = 0, sticky = "news")        
+        
+        self.btn_back = tk.Button(self, text = "Back", font = BUTTON_FONT)
+        self.btn_back.grid(row = 6, column = 0, sticky = "news")        
+        
+        self.btn_clear = tk.Button(self, text = "Clear", font = BUTTON_FONT)
+        self.btn_clear.grid(row = 6, column = 1, sticky = "news")   
+        
+        self.btn_submit = tk.Button(self, text = "Submit", font = BUTTON_FONT)
+        self.btn_submit.grid(row = 6, column = 2, sticky = "news")        
+        
+        self.grid_columnconfigure(0, weight = 1)
+        self.grid_columnconfigure(1, weight = 1)
+        self.grid_columnconfigure(2, weight = 1)
         
         options = ["one", "two"]
         self.tkvar = tk.StringVar(self)
@@ -42,19 +71,19 @@ class SearchMenu(tk.Frame):
         self.ent_box1 = tk.OptionMenu(self, self.tkvar, *options)
         self.ent_box1.grid(row = 2, column = 0, sticky = "news")        
          
-        self.ent_box2 = tk.Entry()
+        self.ent_box2 = tk.Entry(self)
         self.ent_box2.grid(row = 4, column = 0, sticky = "news")     
         
-        btn_filters = BTN_Filters()
+        btn_filters = BTN_Filters(self)
         btn_filters.grid(row = 1, column = 1)        
         
-        self.scrolled_text = ScrolledText()
+        self.scrolled_text = ScrolledText(self, width = 40, height = 8)
         self.scrolled_text.grid(row = 5, column = 0, columnspan = 3)    
         
         
 class BTN_Filters(tk.Frame):
-    def __init__(self):
-        tk.Frame.__init__(self)
+    def __init__(self, parent):
+        tk.Frame.__init__(self, master=parent)
         
         self.title = tk.Checkbutton(self, text = "Title")
         self.title.grid(row = 0, column = 0, sticky = "news")
@@ -92,6 +121,10 @@ class BTN_Filters(tk.Frame):
         self.notes = tk.Checkbutton(self, text = "Notes")
         self.notes.grid(row = 3, column = 2, sticky = "news")        
          
+         
+class Edit_Menu(tk.Frame):
+    def __init__(self):
+        tk.Frame.__init__(self)    
 
                 
         
@@ -106,10 +139,15 @@ if __name__ == "__main__":
     root.geometry("500x500")
     
     main_menu = MainMenu()
-    main_menu.grid(row = 0, column = 0)
+    main_menu.grid(row = 0, column = 0, sticky = "news")
     
     search_menu = SearchMenu()
-    search_menu.grid(row = 0, column = 0)
+    search_menu.grid(row = 0, column = 0, sticky = "news")
+    
+    edit_menu = Edit_Menu()
+    edit_menu.grid(row = 0, column = 0, sticky = "news")
+    
+    edit_menu.tkraise()
     
     root.grid_rowconfigure(0, weight = 1)
     root.grid_columnconfigure(0, weight = 1)
