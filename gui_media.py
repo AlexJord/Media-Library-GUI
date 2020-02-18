@@ -20,6 +20,7 @@ class Screen(tk.Frame):
         tk.Frame.__init__(self)
 
 class MainMenu(Screen):
+    
     def __init__(self):
         Screen.__init__(self)
         self.lbl_title = tk.Label(self, text = "Game Library", font = TITLE_FONT)
@@ -87,7 +88,7 @@ class SearchMenu(Screen):
         self.scrolled_text = ScrolledText(self, width = 40, height = 8)
         self.scrolled_text.grid(row = 5, column = 0, columnspan = 3)  
         
-class SecondEdit_Menu(Screen):
+class AddMenu(Screen):
     def __init__(self):
         Screen.__init__(self)
         
@@ -211,7 +212,69 @@ class Edit_Menu(Screen):
         self.btn_back.grid(row = 6, column = 0, sticky = "news")   
         
         self.btn_ok = tk.Button(self, text = "Ok", font = BUTTON_FONT)
-        self.btn_ok.grid(row = 6, column = 2, sticky = "news")        
+        self.btn_ok.grid(row = 6, column = 2, sticky = "news") 
+        
+class EditSelection(Screen):
+    def __init__(self):
+        Screen.__init__(self)
+        
+        
+        self.lbl_search = tk.Label(self,text = "Title: ", font = BUTTON_FONT)
+        self.lbl_search.grid(row = 2, column = 2, sticky = "news")
+        
+        self.lbl_search2 = tk.Label(self,text = "Pub: ", font = BUTTON_FONT)
+        self.lbl_search2.grid(row = 4, column = 2, sticky = "news")    
+        
+        self.lbl_search3 = tk.Label(self,text = "Made: ", font = BUTTON_FONT)
+        self.lbl_search3.grid(row = 6, column = 2, sticky = "news")        
+        
+        self.lbl_search4 = tk.Label(self,text = "Genre: ", font = BUTTON_FONT)
+        self.lbl_search4.grid(row = 2, column = 0, sticky = "news")        
+        
+        self.lbl_search5 = tk.Label(self,text = "Dev: ", font = BUTTON_FONT)
+        self.lbl_search5.grid(row = 4, column = 0, sticky = "news")        
+        
+        self.lbl_search6 = tk.Label(self,text = "Year: ", font = BUTTON_FONT)
+        self.lbl_search6.grid(row = 6, column = 0, sticky = "news")        
+        
+        self.lbl_search7 = tk.Label(self,text = "Notes: ", font = BUTTON_FONT)
+        self.lbl_search7.grid(row = 10, column = 1, sticky = "news")        
+        
+        self.btn_cancel = tk.Button(self, text = "Cancel", font = BUTTON_FONT)
+        self.btn_cancel.grid(row = 14, column = 0, sticky = "news")        
+        
+        self.btn_confirm = tk.Button(self, text = "Confirm", font = BUTTON_FONT)
+        self.btn_confirm.grid(row = 14, column = 2, sticky = "news")   
+        
+                
+        
+        self.grid_columnconfigure(0, weight = 1)
+        self.grid_columnconfigure(1, weight = 1)
+        self.grid_columnconfigure(2, weight = 1)
+        
+        options = ["one", "two"]
+        self.tkvar = tk.StringVar(self)
+        self.tkvar.set(options[0])
+        self.ent_box1 = tk.Entry(self)
+        self.ent_box1.grid(row = 2, column = 3, sticky = "news")        
+         
+        self.ent_box2 = tk.Entry(self)
+        self.ent_box2.grid(row = 4, column = 3, sticky = "news")     
+        
+        self.ent_box3 = tk.Entry(self)
+        self.ent_box3.grid(row = 6, column = 3, sticky = "news")
+        
+        self.ent_box4 = tk.Entry(self)
+        self.ent_box4.grid(row = 2, column = 1, sticky = "news")  
+        
+        self.ent_box5 = tk.Entry(self)
+        self.ent_box5.grid(row = 4, column = 1, sticky = "news")    
+        
+        self.ent_box5 = tk.Entry(self)
+        self.ent_box5.grid(row = 6, column = 1, sticky = "news")        
+        
+        self.scrolled_text = ScrolledText(self, width = 40, height = 8)
+        self.scrolled_text.grid(row = 12, column = 0, columnspan = 3)
 
 class Remove_Menu(Screen):
     def __init__(self):
@@ -252,6 +315,8 @@ class FileSaved_Menu(Screen):
         self.btn_ok.grid(row = 6, column = 1, sticky = "news")    
 
 ##MAIN
+
+        
 if __name__ == "__main__":
     datafile = open("game_lib.pickle", "rb")
     games = pickle.load(datafile)
@@ -260,25 +325,31 @@ if __name__ == "__main__":
     root.title("Game Lib")
     root.geometry("500x500")
     
-    main_menu = MainMenu()
-    main_menu.grid(row = 0, column = 0, sticky = "news")
+    screens = [MainMenu(),
+              SearchMenu(),
+              AddMenu(),
+              Remove_Menu(),
+              EditSelection(),
+              Edit_Menu(),
+              FileSaved_Menu()
+             ]
     
-    search_menu = SearchMenu()
-    search_menu.grid(row = 0, column = 0, sticky = "news")
+    screens[0].grid(row = 0, column = 0, sticky = "news")
+    screens[1].grid(row = 0, column = 0, sticky = "news")
+    screens[2].grid(row = 0, column = 0, sticky = "news")
+    screens[3].grid(row = 0, column = 0, sticky = "news")
+    screens[4].grid(row = 0, column = 0, sticky = "news")
+    screens[5].grid(row = 0, column = 0, sticky = "news")
+    screens[6].grid(row = 0, column = 0, sticky = "news")
     
-    edit_menu = Edit_Menu()
-    edit_menu.grid(row = 0, column = 0, sticky = "news")
     
-    remove_menu = Remove_Menu()
-    remove_menu.grid(row = 0, column = 0, sticky = "news")
+    screens[0].tkraise()
     
-    filesaved_menu = FileSaved_Menu()
-    filesaved_menu.grid(row = 0, column = 0, sticky = "news")
     
-    secondedit_menu = SecondEdit_Menu()
-    secondedit_menu.grid(row = 0, column = 0, sticky = "news")
     
-    main_menu.tkraise()
+    
+    
+    
     
     root.grid_rowconfigure(0, weight = 1)
     root.grid_columnconfigure(0, weight = 1)
