@@ -19,9 +19,9 @@ class Screen(tk.Frame):
     def __init__(self):
         tk.Frame.__init__(self)
 
-class MainMenu(tk.Frame):
+class MainMenu(Screen):
     def __init__(self):
-        tk.Frame.__init__(self)
+        Screen.__init__(self)
         self.lbl_title = tk.Label(self, text = "Game Library", font = TITLE_FONT)
         self.lbl_title.grid(row = 0, column = 0, columnspan = 3, sticky = "news")
         self.btn_add = tk.Button(self, text = "Add", font = BUTTON_FONT)
@@ -47,9 +47,9 @@ class MainMenu(tk.Frame):
         
         
         
-class SearchMenu(tk.Frame):
+class SearchMenu(Screen):
     def __init__(self):
-        tk.Frame.__init__(self)
+        Screen.__init__(self)
         self.lbl_title = tk.Label(self, text = "Search", font = TITLE_FONT)
         self.lbl_title.grid(row = 0, column = 0, sticky = "news")
         
@@ -87,9 +87,9 @@ class SearchMenu(tk.Frame):
         self.scrolled_text = ScrolledText(self, width = 40, height = 8)
         self.scrolled_text.grid(row = 5, column = 0, columnspan = 3)  
         
-class SecondEdit_Menu(tk.Frame):
+class SecondEdit_Menu(Screen):
     def __init__(self):
-        tk.Frame.__init__(self)
+        Screen.__init__(self)
         
         
         self.lbl_search = tk.Label(self,text = "Title: ", font = BUTTON_FONT)
@@ -100,6 +100,18 @@ class SecondEdit_Menu(tk.Frame):
         
         self.lbl_search3 = tk.Label(self,text = "Made: ", font = BUTTON_FONT)
         self.lbl_search3.grid(row = 6, column = 2, sticky = "news")        
+        
+        self.lbl_search4 = tk.Label(self,text = "Genre: ", font = BUTTON_FONT)
+        self.lbl_search4.grid(row = 2, column = 0, sticky = "news")        
+        
+        self.lbl_search5 = tk.Label(self,text = "Dev: ", font = BUTTON_FONT)
+        self.lbl_search5.grid(row = 4, column = 0, sticky = "news")        
+        
+        self.lbl_search6 = tk.Label(self,text = "Year: ", font = BUTTON_FONT)
+        self.lbl_search6.grid(row = 6, column = 0, sticky = "news")        
+        
+        self.lbl_search7 = tk.Label(self,text = "Notes: ", font = BUTTON_FONT)
+        self.lbl_search7.grid(row = 10, column = 1, sticky = "news")        
         
         self.btn_cancel = tk.Button(self, text = "Cancel", font = BUTTON_FONT)
         self.btn_cancel.grid(row = 14, column = 0, sticky = "news")        
@@ -124,6 +136,15 @@ class SecondEdit_Menu(tk.Frame):
         
         self.ent_box3 = tk.Entry(self)
         self.ent_box3.grid(row = 6, column = 3, sticky = "news")
+        
+        self.ent_box4 = tk.Entry(self)
+        self.ent_box4.grid(row = 2, column = 1, sticky = "news")  
+        
+        self.ent_box5 = tk.Entry(self)
+        self.ent_box5.grid(row = 4, column = 1, sticky = "news")    
+        
+        self.ent_box5 = tk.Entry(self)
+        self.ent_box5.grid(row = 6, column = 1, sticky = "news")        
         
         self.scrolled_text = ScrolledText(self, width = 40, height = 8)
         self.scrolled_text.grid(row = 12, column = 0, columnspan = 3)     
@@ -170,9 +191,9 @@ class BTN_Filters(tk.Frame):
         self.notes.grid(row = 3, column = 2, sticky = "news")        
          
          
-class Edit_Menu(tk.Frame):
+class Edit_Menu(Screen):
     def __init__(self):
-        tk.Frame.__init__(self)    
+        Screen.__init__(self)    
 
         self.lbl_title = tk.Label(self, text = "Which title to edit: ", font = TITLE_FONT)
         self.lbl_title.grid(row = 0, column = 1, sticky = "news") 
@@ -192,9 +213,9 @@ class Edit_Menu(tk.Frame):
         self.btn_ok = tk.Button(self, text = "Ok", font = BUTTON_FONT)
         self.btn_ok.grid(row = 6, column = 2, sticky = "news")        
 
-class Remove_Menu(tk.Frame):
+class Remove_Menu(Screen):
     def __init__(self):
-        tk.Frame.__init__(self)    
+        Screen.__init__(self)    
 
         self.lbl_title = tk.Label(self, text = "Which title to remove: ", font = TITLE_FONT)
         self.lbl_title.grid(row = 0, column = 1, sticky = "news") 
@@ -214,9 +235,9 @@ class Remove_Menu(tk.Frame):
         self.btn_ok = tk.Button(self, text = "Remove", font = BUTTON_FONT)
         self.btn_ok.grid(row = 6, column = 2, sticky = "news")    
         
-class FileSaved_Menu(tk.Frame):
+class FileSaved_Menu(Screen):
     def __init__(self):
-        tk.Frame.__init__(self)    
+        Screen.__init__(self)    
 
         self.lbl_title = tk.Label(self, text = "File Saved.", font = TITLE_FONT)
         self.lbl_title.grid(row = 0, column = 1, sticky = "news") 
@@ -257,7 +278,7 @@ if __name__ == "__main__":
     secondedit_menu = SecondEdit_Menu()
     secondedit_menu.grid(row = 0, column = 0, sticky = "news")
     
-    secondedit_menu.tkraise()
+    main_menu.tkraise()
     
     root.grid_rowconfigure(0, weight = 1)
     root.grid_columnconfigure(0, weight = 1)
