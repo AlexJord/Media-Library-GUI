@@ -18,7 +18,10 @@ class Screen(tk.Frame):
     
     def __init__(self):
         tk.Frame.__init__(self)
-
+    
+    def Switch_Frame():
+        screens[Screen.current].tkraise()
+        
 class MainMenu(Screen):
     
     def __init__(self):
