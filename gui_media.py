@@ -34,13 +34,13 @@ class MainMenu(Screen):
         self.btn_edit = tk.Button(self, text = "Edit", command = self.go_edit, font = BUTTON_FONT)
         self.btn_edit.grid(row = 2, column = 1)        
         
-        self.btn_search = tk.Button(self, text = "Search", font = BUTTON_FONT)
+        self.btn_search = tk.Button(self, text = "Search", command = self.go_search, font = BUTTON_FONT)
         self.btn_search.grid(row = 3, column = 1)
         
-        self.btn_remove = tk.Button(self, text = "Remove", font = BUTTON_FONT)
+        self.btn_remove = tk.Button(self, text = "Remove", command = self.go_remove, font = BUTTON_FONT)
         self.btn_remove.grid(row = 4, column = 1)    
         
-        self.btn_save = tk.Button(self, text = "Save", font = BUTTON_FONT)
+        self.btn_save = tk.Button(self, text = "Save", command = self.go_save, font = BUTTON_FONT)
         self.btn_save.grid(row = 5, column = 1)        
         
         self.grid_columnconfigure(0, weight = 1)
@@ -48,13 +48,24 @@ class MainMenu(Screen):
         self.grid_columnconfigure(2, weight = 1)
                                   
     def go_add(self):
-        Screen.current = 2
+        Screen.current = 1
         Screen.Switch_Frame()
         
     def go_edit(self):
-        Screen.current = 5
+        Screen.current = 2
         Screen.Switch_Frame()
         
+    def go_search(self):
+        Screen.current = 3
+        Screen.Switch_Frame()
+        
+    def go_remove(self):
+        Screen.current = 4
+        Screen.Switch_Frame()
+        
+    def go_save(self):
+        Screen.current = 5
+        Screen.Switch_Frame()
         
 class SearchMenu(Screen):
     def __init__(self):
@@ -126,7 +137,7 @@ class AddMenu(Screen):
         self.lbl_search7 = tk.Label(self,text = "Notes: ", font = BUTTON_FONT)
         self.lbl_search7.grid(row = 10, column = 1, sticky = "news")        
         
-        self.btn_cancel = tk.Button(self, text = "Cancel", command = self.go_cancel, font = BUTTON_FONT)
+        self.btn_cancel = tk.Button(self, text = "Cancel", command = self.go_back, font = BUTTON_FONT)
         self.btn_cancel.grid(row = 14, column = 0, sticky = "news")        
         
         self.btn_confirm = tk.Button(self, text = "Confirm", font = BUTTON_FONT)
@@ -162,9 +173,9 @@ class AddMenu(Screen):
         self.scrolled_text = ScrolledText(self, width = 40, height = 8)
         self.scrolled_text.grid(row = 12, column = 0, columnspan = 3)     
         
-    def go_cancel(self):
+    def go_back(self):
         Screen.current = 0
-        Screen.Switch_Frame()        
+        Screen.Switch_Frame()      
         
 class BTN_Filters(tk.Frame):
     def __init__(self, parent):
@@ -223,11 +234,15 @@ class Edit_Menu(Screen):
         self.grid_columnconfigure(1, weight = 1)
         self.grid_columnconfigure(2, weight = 1)
         
-        self.btn_back = tk.Button(self, text = "Back", font = BUTTON_FONT)
+        self.btn_back = tk.Button(self, text = "Back", command = self.go_back, font = BUTTON_FONT)
         self.btn_back.grid(row = 6, column = 0, sticky = "news")   
         
         self.btn_ok = tk.Button(self, text = "Ok", font = BUTTON_FONT)
         self.btn_ok.grid(row = 6, column = 2, sticky = "news") 
+        
+    def go_back(self):
+        Screen.current = 0
+        Screen.Switch_Frame()    
         
 class EditSelection(Screen):
     def __init__(self):
@@ -255,7 +270,7 @@ class EditSelection(Screen):
         self.lbl_search7 = tk.Label(self,text = "Notes: ", font = BUTTON_FONT)
         self.lbl_search7.grid(row = 10, column = 1, sticky = "news")        
         
-        self.btn_cancel = tk.Button(self, text = "Cancel", font = BUTTON_FONT)
+        self.btn_cancel = tk.Button(self, text = "Cancel", command = self.go_back, font = BUTTON_FONT)
         self.btn_cancel.grid(row = 14, column = 0, sticky = "news")        
         
         self.btn_confirm = tk.Button(self, text = "Confirm", font = BUTTON_FONT)
@@ -290,6 +305,10 @@ class EditSelection(Screen):
         
         self.scrolled_text = ScrolledText(self, width = 40, height = 8)
         self.scrolled_text.grid(row = 12, column = 0, columnspan = 3)
+        
+    def go_back(self):
+        Screen.current = 0
+        Screen.Switch_Frame()    
 
 class Remove_Menu(Screen):
     def __init__(self):
@@ -341,12 +360,12 @@ if __name__ == "__main__":
     root.geometry("500x500")
     
     screens = [MainMenu(),
-              SearchMenu(),
               AddMenu(),
-              Remove_Menu(),
-              EditSelection(),
               Edit_Menu(),
-              FileSaved_Menu()
+              SearchMenu(),
+              Remove_Menu(),
+              FileSaved_Menu(),
+              EditSelection()
              ]
     
     screens[0].grid(row = 0, column = 0, sticky = "news")
