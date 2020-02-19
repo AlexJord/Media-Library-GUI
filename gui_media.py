@@ -31,7 +31,7 @@ class MainMenu(Screen):
         self.btn_add = tk.Button(self, text = "Add", command = self.go_add, font = BUTTON_FONT)
         self.btn_add.grid(row = 1, column = 1)
         
-        self.btn_edit = tk.Button(self, text = "Edit", font = BUTTON_FONT)
+        self.btn_edit = tk.Button(self, text = "Edit", command = self.go_edit, font = BUTTON_FONT)
         self.btn_edit.grid(row = 2, column = 1)        
         
         self.btn_search = tk.Button(self, text = "Search", font = BUTTON_FONT)
@@ -48,10 +48,12 @@ class MainMenu(Screen):
         self.grid_columnconfigure(2, weight = 1)
                                   
     def go_add(self):
-        Screen.current = 1
+        Screen.current = 2
         Screen.Switch_Frame()
         
-        
+    def go_edit(self):
+        Screen.current = 5
+        Screen.Switch_Frame()
         
         
 class SearchMenu(Screen):
@@ -66,7 +68,7 @@ class SearchMenu(Screen):
         self.lbl_search2 = tk.Label(self,text = "Search for: ", font = BUTTON_FONT)
         self.lbl_search2.grid(row = 3, column = 0, sticky = "news")        
         
-        self.btn_back = tk.Button(self, text = "Back", font = BUTTON_FONT)
+        self.btn_back = tk.Button(self, text = "Back", command = self.go_back, font = BUTTON_FONT)
         self.btn_back.grid(row = 6, column = 0, sticky = "news")        
         
         self.btn_clear = tk.Button(self, text = "Clear", font = BUTTON_FONT)
@@ -94,6 +96,10 @@ class SearchMenu(Screen):
         self.scrolled_text = ScrolledText(self, width = 40, height = 8)
         self.scrolled_text.grid(row = 5, column = 0, columnspan = 3)  
         
+    def go_back(self):
+        Screen.current = 0
+        Screen.Switch_Frame()        
+        
 class AddMenu(Screen):
     def __init__(self):
         Screen.__init__(self)
@@ -120,7 +126,7 @@ class AddMenu(Screen):
         self.lbl_search7 = tk.Label(self,text = "Notes: ", font = BUTTON_FONT)
         self.lbl_search7.grid(row = 10, column = 1, sticky = "news")        
         
-        self.btn_cancel = tk.Button(self, text = "Cancel", font = BUTTON_FONT)
+        self.btn_cancel = tk.Button(self, text = "Cancel", command = self.go_cancel, font = BUTTON_FONT)
         self.btn_cancel.grid(row = 14, column = 0, sticky = "news")        
         
         self.btn_confirm = tk.Button(self, text = "Confirm", font = BUTTON_FONT)
@@ -156,6 +162,9 @@ class AddMenu(Screen):
         self.scrolled_text = ScrolledText(self, width = 40, height = 8)
         self.scrolled_text.grid(row = 12, column = 0, columnspan = 3)     
         
+    def go_cancel(self):
+        Screen.current = 0
+        Screen.Switch_Frame()        
         
 class BTN_Filters(tk.Frame):
     def __init__(self, parent):
