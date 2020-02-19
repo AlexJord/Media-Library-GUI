@@ -326,11 +326,15 @@ class Remove_Menu(Screen):
         self.grid_columnconfigure(1, weight = 1)
         self.grid_columnconfigure(2, weight = 1)
         
-        self.btn_back = tk.Button(self, text = "Back", font = BUTTON_FONT)
+        self.btn_back = tk.Button(self, text = "Back", command = self.go_back, font = BUTTON_FONT)
         self.btn_back.grid(row = 6, column = 0, sticky = "news")   
         
         self.btn_ok = tk.Button(self, text = "Remove", font = BUTTON_FONT)
-        self.btn_ok.grid(row = 6, column = 2, sticky = "news")    
+        self.btn_ok.grid(row = 6, column = 2, sticky = "news")  
+        
+    def go_back(self):
+        Screen.current = 0
+        Screen.Switch_Frame()    
         
 class FileSaved_Menu(Screen):
     def __init__(self):
@@ -345,8 +349,12 @@ class FileSaved_Menu(Screen):
         self.grid_columnconfigure(2, weight = 1)
            
         
-        self.btn_ok = tk.Button(self, text = "Ok", font = BUTTON_FONT)
+        self.btn_ok = tk.Button(self, text = "Ok", command = self.go_back, font = BUTTON_FONT)
         self.btn_ok.grid(row = 6, column = 1, sticky = "news")    
+        
+    def go_back(self):
+        Screen.current = 0
+        Screen.Switch_Frame()    
 
 ##MAIN
 
