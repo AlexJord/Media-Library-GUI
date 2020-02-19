@@ -52,6 +52,10 @@ class MainMenu(Screen):
         Screen.Switch_Frame()
         
     def go_edit(self):
+        pop_up = tk.Tk()
+        pop_up.title("Edit")
+        frm_edit_list = EditSelection(pop_up)
+        frm_entry_list.grid(row = 0, column = 0)
         Screen.current = 2
         Screen.Switch_Frame()
         
@@ -139,6 +143,9 @@ class AddMenu(Screen):
         
         self.btn_cancel = tk.Button(self, text = "Cancel", command = self.go_back, font = BUTTON_FONT)
         self.btn_cancel.grid(row = 14, column = 0, sticky = "news")        
+        
+        self.btn_reset = tk.Button(self, text = "Reset", font = BUTTON_FONT)
+        self.btn_reset.grid(row = 14, column = 1, sticky = "news")
         
         self.btn_confirm = tk.Button(self, text = "Confirm", font = BUTTON_FONT)
         self.btn_confirm.grid(row = 14, column = 2, sticky = "news")   
@@ -237,12 +244,16 @@ class Edit_Menu(Screen):
         self.btn_back = tk.Button(self, text = "Back", command = self.go_back, font = BUTTON_FONT)
         self.btn_back.grid(row = 6, column = 0, sticky = "news")   
         
-        self.btn_ok = tk.Button(self, text = "Ok", font = BUTTON_FONT)
+        self.btn_ok = tk.Button(self, text = "Ok", command = self.go_edit, font = BUTTON_FONT)
         self.btn_ok.grid(row = 6, column = 2, sticky = "news") 
         
     def go_back(self):
         Screen.current = 0
         Screen.Switch_Frame()    
+        
+    def go_edit(self):
+        Screen.current = 6
+        Screen.Switch_Frame()
         
 class EditSelection(Screen):
     def __init__(self):
@@ -278,9 +289,9 @@ class EditSelection(Screen):
         
                 
         
-        self.grid_columnconfigure(0, weight = 1)
-        self.grid_columnconfigure(1, weight = 1)
-        self.grid_columnconfigure(2, weight = 1)
+        #self.grid_columnconfigure(0, weight = 1)
+        #self.grid_columnconfigure(1, weight = 1)
+        #self.grid_columnconfigure(2, weight = 1)
         
         options = ["one", "two"]
         self.tkvar = tk.StringVar(self)
