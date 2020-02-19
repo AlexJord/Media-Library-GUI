@@ -55,9 +55,8 @@ class MainMenu(Screen):
         pop_up = tk.Tk()
         pop_up.title("Edit")
         frm_edit_list = EditSelection(pop_up)
-        frm_entry_list.grid(row = 0, column = 0)
-        Screen.current = 2
-        Screen.Switch_Frame()
+        frm_edit_list.grid(row = 0, column = 0)
+        
         
     def go_search(self):
         Screen.current = 3
@@ -255,9 +254,9 @@ class Edit_Menu(Screen):
         Screen.current = 6
         Screen.Switch_Frame()
         
-class EditSelection(Screen):
-    def __init__(self):
-        Screen.__init__(self)
+class EditSelection(tk.Frame):
+    def __init__(self, parent):
+        tk.Frame.__init__(self, master=parent)
         
         
         self.lbl_search = tk.Label(self,text = "Title: ", font = BUTTON_FONT)
@@ -384,7 +383,7 @@ if __name__ == "__main__":
               SearchMenu(),
               Remove_Menu(),
               FileSaved_Menu(),
-              EditSelection()
+              EditSelection(None)
              ]
     
     screens[0].grid(row = 0, column = 0, sticky = "news")
