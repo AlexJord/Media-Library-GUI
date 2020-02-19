@@ -51,7 +51,7 @@ class MainMenu(Screen):
         Screen.current = 1
         Screen.Switch_Frame()
         
-    def go_edit(self):
+    def go_edit(self, master=parent):
         pop_up = tk.Tk()
         pop_up.title("Edit")
         frm_edit_list = EditSelection(pop_up)
