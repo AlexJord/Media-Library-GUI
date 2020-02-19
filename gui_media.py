@@ -28,7 +28,7 @@ class MainMenu(Screen):
         Screen.__init__(self)
         self.lbl_title = tk.Label(self, text = "Game Library", font = TITLE_FONT)
         self.lbl_title.grid(row = 0, column = 0, columnspan = 3, sticky = "news")
-        self.btn_add = tk.Button(self, text = "Add", font = BUTTON_FONT)
+        self.btn_add = tk.Button(self, text = "Add", command = self.go_add, font = BUTTON_FONT)
         self.btn_add.grid(row = 1, column = 1)
         
         self.btn_edit = tk.Button(self, text = "Edit", font = BUTTON_FONT)
@@ -46,7 +46,10 @@ class MainMenu(Screen):
         self.grid_columnconfigure(0, weight = 1)
         self.grid_columnconfigure(1, weight = 1)
         self.grid_columnconfigure(2, weight = 1)
-        
+                                  
+    def go_add(self):
+        Screen.current = 1
+        Screen.Switch_Frame()
         
         
         
