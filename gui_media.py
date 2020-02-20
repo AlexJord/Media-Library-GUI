@@ -26,6 +26,7 @@ class MainMenu(Screen):
     
     def __init__(self):
         Screen.__init__(self)
+        
         self.lbl_title = tk.Label(self, text = "Game Library", font = TITLE_FONT)
         self.lbl_title.grid(row = 0, column = 0, columnspan = 3, sticky = "news")
        
@@ -75,6 +76,7 @@ class MainMenu(Screen):
 class SearchMenu(Screen):
     def __init__(self):
         Screen.__init__(self)
+       
         self.lbl_title = tk.Label(self, text = "Search", font = TITLE_FONT)
         self.lbl_title.grid(row = 0, column = 0, sticky = "news")
         
@@ -100,6 +102,7 @@ class SearchMenu(Screen):
         options = ["one", "two"]
         self.tkvar = tk.StringVar(self)
         self.tkvar.set(options[0])
+       
         self.ent_box1 = tk.OptionMenu(self, self.tkvar, *options)
         self.ent_box1.grid(row = 2, column = 0, sticky = "news")        
          
@@ -160,6 +163,7 @@ class AddMenu(Screen):
         options = ["one", "two"]
         self.tkvar = tk.StringVar(self)
         self.tkvar.set(options[0])
+      
         self.ent_box1 = tk.Entry(self)
         self.ent_box1.grid(row = 2, column = 3, sticky = "news")        
          
@@ -236,8 +240,10 @@ class Edit_Menu(Screen):
         options = ["one", "two"] 
         self.tkvar = tk.StringVar(self)
         self.tkvar.set(options[0])
+        
         self.ent_box1 = tk.OptionMenu(self, self.tkvar, *options)
         self.ent_box1.grid(row = 2, column = 1, sticky = "news")         
+        
         self.grid_columnconfigure(0, weight = 1)
         self.grid_columnconfigure(1, weight = 1)
         self.grid_columnconfigure(2, weight = 1)
@@ -297,6 +303,7 @@ class EditSelection(tk.Frame):
         options = ["one", "two"]
         self.tkvar = tk.StringVar(self)
         self.tkvar.set(options[0])
+        
         self.ent_box1 = tk.Entry(self)
         self.ent_box1.grid(row = 2, column = 3, sticky = "news")        
          
@@ -332,8 +339,10 @@ class Remove_Menu(Screen):
         options = ["one", "two"] 
         self.tkvar = tk.StringVar(self)
         self.tkvar.set(options[0])
+        
         self.ent_box1 = tk.OptionMenu(self, self.tkvar, *options)
         self.ent_box1.grid(row = 2, column = 1, sticky = "news")         
+        
         self.grid_columnconfigure(0, weight = 1)
         self.grid_columnconfigure(1, weight = 1)
         self.grid_columnconfigure(2, weight = 1)
