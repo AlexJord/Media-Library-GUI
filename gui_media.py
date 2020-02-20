@@ -232,40 +232,7 @@ class BTN_Filters(tk.Frame):
          
 class Edit_Menu(Screen):
     def __init__(self):
-        Screen.__init__(self)    
-
-        self.lbl_title = tk.Label(self, text = "Which title to edit: ", font = TITLE_FONT)
-        self.lbl_title.grid(row = 0, column = 1, sticky = "news") 
-        
-        options = ["one", "two"] 
-        self.tkvar = tk.StringVar(self)
-        self.tkvar.set(options[0])
-        
-        self.ent_box1 = tk.OptionMenu(self, self.tkvar, *options)
-        self.ent_box1.grid(row = 2, column = 1, sticky = "news")         
-        
-        self.grid_columnconfigure(0, weight = 1)
-        self.grid_columnconfigure(1, weight = 1)
-        self.grid_columnconfigure(2, weight = 1)
-        
-        self.btn_back = tk.Button(self, text = "Back", command = self.go_back, font = BUTTON_FONT)
-        self.btn_back.grid(row = 6, column = 0, sticky = "news")   
-        
-        self.btn_ok = tk.Button(self, text = "Ok", command = self.go_edit, font = BUTTON_FONT)
-        self.btn_ok.grid(row = 6, column = 2, sticky = "news") 
-        
-    def go_back(self):
-        Screen.current = 0
-        Screen.Switch_Frame()    
-        
-    def go_edit(self):
-        Screen.current = 6
-        Screen.Switch_Frame()
-        
-class EditSelection(tk.Frame):
-    def __init__(self, parent):
-        tk.Frame.__init__(self, master=parent)
-        
+        Screen.__init__(self)
         
         self.lbl_search = tk.Label(self,text = "Title: ", font = BUTTON_FONT)
         self.lbl_search.grid(row = 2, column = 2, sticky = "news")
@@ -328,6 +295,46 @@ class EditSelection(tk.Frame):
     def go_back(self):
         Screen.current = 0
         Screen.Switch_Frame()    
+    
+    
+    
+   
+        
+class EditSelection(tk.Frame):
+    def __init__(self, parent):
+        tk.Frame.__init__(self, master=parent)    
+        self.parent=parent
+
+        self.lbl_title = tk.Label(self, text = "Which title to edit: ", font = TITLE_FONT)
+        self.lbl_title.grid(row = 0, column = 1, sticky = "news") 
+        
+        options = ["one", "two"] 
+        self.tkvar = tk.StringVar(self)
+        self.tkvar.set(options[0])
+        
+        self.ent_box1 = tk.OptionMenu(self, self.tkvar, *options)
+        self.ent_box1.grid(row = 2, column = 1, sticky = "news")         
+        
+        self.grid_columnconfigure(0, weight = 1)
+        self.grid_columnconfigure(1, weight = 1)
+        self.grid_columnconfigure(2, weight = 1)
+        
+        self.btn_back = tk.Button(self, text = "Back", command = self.go_back, font = BUTTON_FONT)
+        self.btn_back.grid(row = 6, column = 0, sticky = "news")   
+        
+        self.btn_ok = tk.Button(self, text = "Ok", command = self.go_edit, font = BUTTON_FONT)
+        self.btn_ok.grid(row = 6, column = 2, sticky = "news") 
+        
+    def go_back(self):
+        Screen.current = 0
+        Screen.Switch_Frame()    
+        
+    def go_edit(self):
+        Screen.current = 6
+        Screen.Switch_Frame()    
+    
+    
+      
 
 class Remove_Menu(Screen):
     def __init__(self):
@@ -406,7 +413,8 @@ if __name__ == "__main__":
     
     
     
-    
+    dummy = EditSelection(root)
+    dummy.grid(row = 0, column = 0, sticky = "news")
     
     
     
