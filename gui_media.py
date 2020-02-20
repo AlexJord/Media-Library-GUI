@@ -28,6 +28,7 @@ class MainMenu(Screen):
         Screen.__init__(self)
         self.lbl_title = tk.Label(self, text = "Game Library", font = TITLE_FONT)
         self.lbl_title.grid(row = 0, column = 0, columnspan = 3, sticky = "news")
+       
         self.btn_add = tk.Button(self, text = "Add", command = self.go_add, font = BUTTON_FONT)
         self.btn_add.grid(row = 1, column = 1)
         
@@ -56,6 +57,7 @@ class MainMenu(Screen):
         pop_up.title("Edit")
         frm_edit_list = EditSelection(pop_up)
         frm_edit_list.grid(row = 0, column = 0)
+        
         
         
     def go_search(self):
@@ -381,9 +383,7 @@ if __name__ == "__main__":
               AddMenu(),
               Edit_Menu(),
               SearchMenu(),
-              Remove_Menu(),
-              FileSaved_Menu(),
-              EditSelection(None)
+              Remove_Menu()
              ]
     
     screens[0].grid(row = 0, column = 0, sticky = "news")
@@ -391,8 +391,6 @@ if __name__ == "__main__":
     screens[2].grid(row = 0, column = 0, sticky = "news")
     screens[3].grid(row = 0, column = 0, sticky = "news")
     screens[4].grid(row = 0, column = 0, sticky = "news")
-    screens[5].grid(row = 0, column = 0, sticky = "news")
-    screens[6].grid(row = 0, column = 0, sticky = "news")
     
     
     screens[0].tkraise()
