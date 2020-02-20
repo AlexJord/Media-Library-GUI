@@ -324,6 +324,7 @@ class EditSelection(tk.Frame):
         self.btn_ok.grid(row = 6, column = 2, sticky = "news") 
         
     def go_back(self):
+        self.parent.destroy()
         Screen.current = 0
         Screen.Switch_Frame()    
         
