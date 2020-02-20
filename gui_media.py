@@ -59,8 +59,6 @@ class MainMenu(Screen):
         frm_edit_list = EditSelection(pop_up)
         frm_edit_list.grid(row = 0, column = 0)
         
-        
-        
     def go_search(self):
         Screen.current = 3
         Screen.Switch_Frame()
@@ -413,8 +411,7 @@ if __name__ == "__main__":
     
     
     
-    dummy = EditSelection(root)
-    dummy.grid(row = 0, column = 0, sticky = "news")
+
     
     
     
