@@ -15,7 +15,7 @@ BUTTON_FONT = ("Arial", 15)
 class Screen(tk.Frame):
     
     current = 0
-    
+     
     def __init__(self):
         tk.Frame.__init__(self)
     
