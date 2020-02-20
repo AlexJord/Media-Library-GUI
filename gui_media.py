@@ -329,7 +329,8 @@ class EditSelection(tk.Frame):
         Screen.Switch_Frame()    
         
     def go_edit(self):
-        Screen.current = 6
+        self.parent.destroy()
+        Screen.current = 2
         Screen.Switch_Frame()    
     
     
