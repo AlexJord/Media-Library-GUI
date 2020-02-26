@@ -19,7 +19,7 @@ class Screen(tk.Frame):
     def __init__(self):
         tk.Frame.__init__(self)
     
-    def Switch_Frame():
+    def switch_frame():
         screens[Screen.current].tkraise()
         
 class MainMenu(Screen):
@@ -51,7 +51,7 @@ class MainMenu(Screen):
                                   
     def go_add(self):
         Screen.current = 1
-        Screen.Switch_Frame()
+        Screen.switch_frame()
         
     def go_edit(self):
         pop_up = tk.Tk()
@@ -61,15 +61,15 @@ class MainMenu(Screen):
         
     def go_search(self):
         Screen.current = 3
-        Screen.Switch_Frame()
+        Screen.switch_frame()
         
     def go_remove(self):
         Screen.current = 4
-        Screen.Switch_Frame()
+        Screen.switch_frame()
         
     def go_save(self):
         Screen.current = 5
-        Screen.Switch_Frame()
+        Screen.switch_frame()
         
 class SearchMenu(Screen):
     def __init__(self):
@@ -115,7 +115,7 @@ class SearchMenu(Screen):
         
     def go_back(self):
         Screen.current = 0
-        Screen.Switch_Frame()        
+        Screen.switch_frame()        
         
 class AddMenu(Screen):
     def __init__(self):
@@ -177,15 +177,15 @@ class AddMenu(Screen):
         self.ent_box5 = tk.Entry(self)
         self.ent_box5.grid(row = 4, column = 1, sticky = "news")    
         
-        self.ent_box5 = tk.Entry(self)
-        self.ent_box5.grid(row = 6, column = 1, sticky = "news")        
+        self.ent_box6 = tk.Entry(self)
+        self.ent_box6.grid(row = 6, column = 1, sticky = "news")        
         
         self.scrolled_text = ScrolledText(self, width = 40, height = 8)
         self.scrolled_text.grid(row = 12, column = 0, columnspan = 3)     
         
     def go_back(self):
         Screen.current = 0
-        Screen.Switch_Frame()      
+        Screen.switch_frame()      
         
 class BTN_Filters(tk.Frame):
     def __init__(self, parent):
@@ -233,33 +233,43 @@ class Edit_Menu(Screen):
         Screen.__init__(self)
         
         self.edit_key = 0
+                
         
-        self.lbl_search = tk.Label(self,text = "Title: ", font = BUTTON_FONT)
-        self.lbl_search.grid(row = 2, column = 2, sticky = "news")
+        self.lbl_title = tk.Label(self,text = "Title: ", font = BUTTON_FONT)
+        self.lbl_title.grid(row = 2, column = 2, sticky = "news")
         
-        self.lbl_search2 = tk.Label(self,text = "Pub: ", font = BUTTON_FONT)
-        self.lbl_search2.grid(row = 4, column = 2, sticky = "news")    
+        self.lbl_publisher = tk.Label(self,text = "Pub: ", font = BUTTON_FONT)
+        self.lbl_publisher.grid(row = 4, column = 2, sticky = "news")    
         
-        self.lbl_search3 = tk.Label(self,text = "Made: ", font = BUTTON_FONT)
-        self.lbl_search3.grid(row = 6, column = 2, sticky = "news")        
+        self.lbl_made = tk.Label(self,text = "Made: ", font = BUTTON_FONT)
+        self.lbl_made.grid(row = 6, column = 2, sticky = "news")        
         
-        self.lbl_search4 = tk.Label(self,text = "Genre: ", font = BUTTON_FONT)
-        self.lbl_search4.grid(row = 2, column = 0, sticky = "news")        
+        self.lbl_player = tk.Label(self,text = "Player Mode: ", font = BUTTON_FONT)
+        self.lbl_player.grid(row = 8, column = 2, sticky = "news")
         
-        self.lbl_search5 = tk.Label(self,text = "Dev: ", font = BUTTON_FONT)
-        self.lbl_search5.grid(row = 4, column = 0, sticky = "news")        
+        self.lbl_genre = tk.Label(self,text = "Genre: ", font = BUTTON_FONT)
+        self.lbl_genre.grid(row = 2, column = 0, sticky = "news")        
         
-        self.lbl_search6 = tk.Label(self,text = "Year: ", font = BUTTON_FONT)
-        self.lbl_search6.grid(row = 6, column = 0, sticky = "news")        
+        self.lbl_developer = tk.Label(self,text = "Dev: ", font = BUTTON_FONT)
+        self.lbl_developer.grid(row = 4, column = 0, sticky = "news")        
         
-        self.lbl_search7 = tk.Label(self,text = "Notes: ", font = BUTTON_FONT)
-        self.lbl_search7.grid(row = 10, column = 1, sticky = "news")        
+        self.lbl_console = tk.Label(self,text = "Console: ", font = BUTTON_FONT)
+        self.lbl_console.grid(row = 6, column = 0, sticky = "news")   
+        
+        self.lbl_rating = tk.Label(self,text = "Rating: ", font = BUTTON_FONT)
+        self.lbl_rating.grid(row = 8, column = 0, sticky = "news")  
+        
+        self.lbl_price = tk.Label(self,text = "Price: ", font = BUTTON_FONT)
+        self.lbl_price.grid(row = 10, column = 0, sticky = "news")        
+        
+        self.lbl_notes = tk.Label(self,text = "Notes: ", font = BUTTON_FONT)
+        self.lbl_notes.grid(row = 18, column = 1, sticky = "news")        
         
         self.btn_cancel = tk.Button(self, text = "Cancel", command = self.go_back, font = BUTTON_FONT)
-        self.btn_cancel.grid(row = 14, column = 0, sticky = "news")        
+        self.btn_cancel.grid(row = 22, column = 0, sticky = "news")        
         
         self.btn_confirm = tk.Button(self, text = "Confirm", font = BUTTON_FONT)
-        self.btn_confirm.grid(row = 14, column = 2, sticky = "news")   
+        self.btn_confirm.grid(row = 22, column = 2, sticky = "news")   
         
                 
         
@@ -271,63 +281,68 @@ class Edit_Menu(Screen):
         self.tkvar = tk.StringVar(self)
         self.tkvar.set(options[0])
         
-        self.ent_box1 = tk.Entry(self)
-        self.ent_box1.grid(row = 2, column = 3, sticky = "news")        
+        self.ent_title = tk.Entry(self)
+        self.ent_title.grid(row = 2, column = 3, sticky = "news")        
          
-        self.ent_box2 = tk.Entry(self)
-        self.ent_box2.grid(row = 4, column = 3, sticky = "news")     
+        self.ent_pub = tk.Entry(self)
+        self.ent_pub.grid(row = 4, column = 3, sticky = "news")     
         
-        self.ent_box3 = tk.Entry(self)
-        self.ent_box3.grid(row = 6, column = 3, sticky = "news")
+        self.ent_made = tk.Entry(self)
+        self.ent_made.grid(row = 6, column = 3, sticky = "news")
         
-        self.ent_box4 = tk.Entry(self)
-        self.ent_box4.grid(row = 2, column = 1, sticky = "news")  
+        self.ent_rating = tk.Entry(self)
+        self.ent_rating.grid(row = 8, column = 1, sticky = "news")
         
-        self.ent_box5 = tk.Entry(self)
-        self.ent_box5.grid(row = 4, column = 1, sticky = "news")    
+        self.ent_price = tk.Entry(self)
+        self.ent_price.grid(row = 10, column = 1, sticky = "news")
         
-        self.ent_box5 = tk.Entry(self)
-        self.ent_box5.grid(row = 6, column = 1, sticky = "news")        
+        self.ent_title = tk.Entry(self)
+        self.ent_title.grid(row = 2, column = 1, sticky = "news")  
+        
+        self.ent_pub = tk.Entry(self)
+        self.ent_pub.grid(row = 4, column = 1, sticky = "news")    
+        
+        self.ent_made = tk.Entry(self)
+        self.ent_made.grid(row = 6, column = 1, sticky = "news")    
+        
+
         
         self.scrolled_text = ScrolledText(self, width = 40, height = 8)
         self.scrolled_text.grid(row = 12, column = 0, columnspan = 3)
         
+        
+        
     def go_back(self):
         Screen.current = 0
-        Screen.Switch_Frame()    
+        Screen.switch_frame()    
+        
+    def confirmed_edit(self):
+        entry = []
     
     def update(self):
         game = games[self.edit_key]
         
         self.ent_genre.delete(0,"end")
-        self.ent_genre.insert(0,game[0])        
+        self.ent_genre.insert(0,game[1])        
         
-        self.ent_title.delete(0,"end")
-        self.ent_title.insert(0,game[1])
-    
-        self.ent_company.delete(0,"end")
-        self.ent_company.insert(0,game[2])
-    
-        self.ent_publisher.delete(0,"end")
-        self.ent_publisher.insert(0,game[3])
+        self.ent_dev.delete(0,"end")
+        self.ent_dev.insert(0,game[0])
     
         self.ent_console.delete(0,"end")
-        self.ent_console.insert(0,game[4])
+        self.ent_console.insert(0,game[2])
     
-        self.ent_release_year.delete(0,"end")
-        self.ent_release_year.insert(0,game[5])
+        self.ent_title.delete(0,"end")
+        self.ent_title.insert(0,game[3])
     
-        self.ent_rating.delete(0,"end")
-        self.ent_rating.insert(0,game[6])
+        self.ent_pub.delete(0,"end")
+        self.ent_pub.insert(0,game[4])
     
-        self.ent_price.delete(0,"end")
-        self.ent_price.insert(0,game[8])
+        self.ent_made.delete(0,"end")
+        self.ent_made.insert(0,game[5])
     
-        self.ent_date_purchased.delete(0,"end")
-        self.ent_date_purchased.insert(0,game[10])
     
-        self.scr_notes.delete(1.0,"end")
-        self.scr_notes.insert(1.0,game[11])    
+        self.scrolled_text.delete(1.0,"end")
+        self.scrolled_text.insert(1.0,game[11])    
         
     
    
@@ -364,12 +379,16 @@ class EditSelection(tk.Frame):
     def go_back(self):
         self.parent.destroy()
         Screen.current = 0
-        Screen.Switch_Frame()    
+        Screen.switch_frame()    
         
+    def go_forward(self):
+        self.parent.destroy()
+        Screen.current = 2
+        Screen.switch_frame()    
         
     def go_edit(self):
         #Check if the selection has not been made.
-        title = self.tkvar_title.get()
+        title = self.tkvar.get()
         if(title == self.options[0]):
             pass
         else:
@@ -379,6 +398,7 @@ class EditSelection(tk.Frame):
                 if self.options[i] == title:
                     screens[Screen.current].edit_key = i
             screens[Screen.current].update()
+            
             Screen.switch_frame()
     
             #Destroy the master
@@ -412,7 +432,7 @@ class Remove_Menu(Screen):
         
     def go_back(self):
         Screen.current = 0
-        Screen.Switch_Frame()    
+        Screen.switch_frame()    
         
 class FileSaved_Menu(Screen):
     def __init__(self):
@@ -432,7 +452,7 @@ class FileSaved_Menu(Screen):
         
     def go_back(self):
         Screen.current = 0
-        Screen.Switch_Frame()    
+        Screen.switch_frame()    
 
 ##MAIN
 
