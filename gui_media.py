@@ -232,6 +232,8 @@ class Edit_Menu(Screen):
     def __init__(self):
         Screen.__init__(self)
         
+        self.edit_key = 0
+        
         self.lbl_search = tk.Label(self,text = "Title: ", font = BUTTON_FONT)
         self.lbl_search.grid(row = 2, column = 2, sticky = "news")
         
@@ -294,7 +296,39 @@ class Edit_Menu(Screen):
         Screen.current = 0
         Screen.Switch_Frame()    
     
+    def update(self):
+        game = games[self.edit_key]
+        
+        self.ent_genre.delete(0,"end")
+        self.ent_genre.insert(0,game[0])        
+        
+        self.ent_title.delete(0,"end")
+        self.ent_title.insert(0,game[1])
     
+        self.ent_company.delete(0,"end")
+        self.ent_company.insert(0,game[2])
+    
+        self.ent_publisher.delete(0,"end")
+        self.ent_publisher.insert(0,game[3])
+    
+        self.ent_console.delete(0,"end")
+        self.ent_console.insert(0,game[4])
+    
+        self.ent_release_year.delete(0,"end")
+        self.ent_release_year.insert(0,game[5])
+    
+        self.ent_rating.delete(0,"end")
+        self.ent_rating.insert(0,game[6])
+    
+        self.ent_price.delete(0,"end")
+        self.ent_price.insert(0,game[8])
+    
+        self.ent_date_purchased.delete(0,"end")
+        self.ent_date_purchased.insert(0,game[10])
+    
+        self.scr_notes.delete(1.0,"end")
+        self.scr_notes.insert(1.0,game[11])    
+        
     
    
         
@@ -302,15 +336,19 @@ class EditSelection(tk.Frame):
     def __init__(self, parent):
         tk.Frame.__init__(self, master=parent)    
         self.parent=parent
-
+        
         self.lbl_title = tk.Label(self, text = "Which title to edit: ", font = TITLE_FONT)
         self.lbl_title.grid(row = 0, column = 1, sticky = "news") 
         
-        options = ["one", "two"] 
-        self.tkvar = tk.StringVar(self)
-        self.tkvar.set(options[0])
+        self.options = ["Enter your selection"] 
         
-        self.ent_box1 = tk.OptionMenu(self, self.tkvar, *options)
+        for key in games.keys():
+            self.options.append(games[key][1])
+        
+        self.tkvar = tk.StringVar(self)
+        self.tkvar.set(self.options[0])
+        
+        self.ent_box1 = tk.OptionMenu(self, self.tkvar, *self.options)
         self.ent_box1.grid(row = 2, column = 1, sticky = "news")         
         
         self.grid_columnconfigure(0, weight = 1)
@@ -328,13 +366,25 @@ class EditSelection(tk.Frame):
         Screen.current = 0
         Screen.Switch_Frame()    
         
+        
     def go_edit(self):
-        self.parent.destroy()
-        Screen.current = 2
-        Screen.Switch_Frame()    
+        #Check if the selection has not been made.
+        title = self.tkvar_title.get()
+        if(title == self.options[0]):
+            pass
+        else:
+            #Update the next screen before switching the frame.
+            Screen.current = 2
+            for i in range(len(self.options)):
+                if self.options[i] == title:
+                    screens[Screen.current].edit_key = i
+            screens[Screen.current].update()
+            Screen.switch_frame()
     
+            #Destroy the master
+            self.master.destroy()        
     
-      
+
 
 class Remove_Menu(Screen):
     def __init__(self):
