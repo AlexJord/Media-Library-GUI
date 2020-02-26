@@ -247,6 +247,9 @@ class Edit_Menu(Screen):
         self.lbl_player = tk.Label(self,text = "Player Mode: ", font = BUTTON_FONT)
         self.lbl_player.grid(row = 8, column = 2, sticky = "news")
         
+        self.lbl_date = tk.Label(self,text = "Date Purchased: ", font = BUTTON_FONT)
+        self.lbl_date.grid(row = 10, column = 2, sticky = "news")
+        
         self.lbl_genre = tk.Label(self,text = "Genre: ", font = BUTTON_FONT)
         self.lbl_genre.grid(row = 2, column = 0, sticky = "news")        
         
@@ -263,7 +266,7 @@ class Edit_Menu(Screen):
         self.lbl_price.grid(row = 10, column = 0, sticky = "news")        
         
         self.lbl_notes = tk.Label(self,text = "Notes: ", font = BUTTON_FONT)
-        self.lbl_notes.grid(row = 18, column = 1, sticky = "news")        
+        self.lbl_notes.grid(row = 11, column = 1, sticky = "news")        
         
         self.btn_cancel = tk.Button(self, text = "Cancel", command = self.go_back, font = BUTTON_FONT)
         self.btn_cancel.grid(row = 22, column = 0, sticky = "news")        
@@ -290,22 +293,26 @@ class Edit_Menu(Screen):
         self.ent_made = tk.Entry(self)
         self.ent_made.grid(row = 6, column = 3, sticky = "news")
         
+        self.ent_player = tk.Entry(self)
+        self.ent_player.grid(row = 8, column = 3, sticky = "news")
+        
+        self.ent_date = tk.Entry(self)
+        self.ent_date.grid(row = 10, column = 3, sticky = "news")
+        
+        self.ent_genre = tk.Entry(self)
+        self.ent_genre.grid(row = 2, column = 1, sticky = "news")  
+        
+        self.ent_dev = tk.Entry(self)
+        self.ent_dev.grid(row = 4, column = 1, sticky = "news")    
+        
+        self.ent_console = tk.Entry(self)
+        self.ent_console.grid(row = 6, column = 1, sticky = "news")    
+        
         self.ent_rating = tk.Entry(self)
         self.ent_rating.grid(row = 8, column = 1, sticky = "news")
         
         self.ent_price = tk.Entry(self)
         self.ent_price.grid(row = 10, column = 1, sticky = "news")
-        
-        self.ent_title = tk.Entry(self)
-        self.ent_title.grid(row = 2, column = 1, sticky = "news")  
-        
-        self.ent_pub = tk.Entry(self)
-        self.ent_pub.grid(row = 4, column = 1, sticky = "news")    
-        
-        self.ent_made = tk.Entry(self)
-        self.ent_made.grid(row = 6, column = 1, sticky = "news")    
-        
-
         
         self.scrolled_text = ScrolledText(self, width = 40, height = 8)
         self.scrolled_text.grid(row = 12, column = 0, columnspan = 3)
@@ -318,31 +325,47 @@ class Edit_Menu(Screen):
         
     def confirmed_edit(self):
         entry = []
+        entry.append(self.ent_genre.get())
+        
+        entry.append(self.scrolled_text.get(0.0, "end"))
+        games[self.edit_key] = entry
     
     def update(self):
         game = games[self.edit_key]
         
         self.ent_genre.delete(0,"end")
-        self.ent_genre.insert(0,game[1])        
+        self.ent_genre.insert(0,game[0])        
         
         self.ent_dev.delete(0,"end")
-        self.ent_dev.insert(0,game[0])
+        self.ent_dev.insert(0,game[2])
     
         self.ent_console.delete(0,"end")
-        self.ent_console.insert(0,game[2])
+        self.ent_console.insert(0,game[4])
     
         self.ent_title.delete(0,"end")
-        self.ent_title.insert(0,game[3])
+        self.ent_title.insert(0,game[1])
     
         self.ent_pub.delete(0,"end")
-        self.ent_pub.insert(0,game[4])
+        self.ent_pub.insert(0,game[3])
     
         self.ent_made.delete(0,"end")
         self.ent_made.insert(0,game[5])
+        
+        self.ent_rating.delete(0,"end")
+        self.ent_rating.insert(0,game[6])
+        
+        self.ent_player.delete(0,"end")
+        self.ent_player.insert(0,game[7])
+        
+        self.ent_price.delete(0,"end")
+        self.ent_price.insert(0,game[8])        
+        
+        self.ent_date.delete(0,"end")
+        self.ent_date.insert(0,game[10])        
     
     
-        self.scrolled_text.delete(1.0,"end")
-        self.scrolled_text.insert(1.0,game[11])    
+        self.scrolled_text.delete(0.0,"end")
+        self.scrolled_text.insert(0.0,game[11])    
         
     
    
