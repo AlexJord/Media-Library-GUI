@@ -51,6 +51,7 @@ class MainMenu(Screen):
                                   
     def go_add(self):
         Screen.current = 1
+        screens[Screen.current].clear()
         Screen.switch_frame()
         
     def go_edit(self):
@@ -122,31 +123,43 @@ class AddMenu(Screen):
         Screen.__init__(self)
         
         
-        self.lbl_search = tk.Label(self,text = "Title: ", font = BUTTON_FONT)
-        self.lbl_search.grid(row = 2, column = 2, sticky = "news")
+        self.lbl_title = tk.Label(self,text = "Title: ", font = BUTTON_FONT)
+        self.lbl_title.grid(row = 2, column = 2, sticky = "news")
         
-        self.lbl_search2 = tk.Label(self,text = "Pub: ", font = BUTTON_FONT)
-        self.lbl_search2.grid(row = 4, column = 2, sticky = "news")    
+        self.lbl_publisher = tk.Label(self,text = "Pub: ", font = BUTTON_FONT)
+        self.lbl_publisher.grid(row = 4, column = 2, sticky = "news")    
         
-        self.lbl_search3 = tk.Label(self,text = "Made: ", font = BUTTON_FONT)
-        self.lbl_search3.grid(row = 6, column = 2, sticky = "news")        
+        self.lbl_made = tk.Label(self,text = "Made: ", font = BUTTON_FONT)
+        self.lbl_made.grid(row = 6, column = 2, sticky = "news")        
         
-        self.lbl_search4 = tk.Label(self,text = "Genre: ", font = BUTTON_FONT)
-        self.lbl_search4.grid(row = 2, column = 0, sticky = "news")        
+        self.lbl_player = tk.Label(self,text = "Player Mode: ", font = BUTTON_FONT)
+        self.lbl_player.grid(row = 8, column = 2, sticky = "news")
         
-        self.lbl_search5 = tk.Label(self,text = "Dev: ", font = BUTTON_FONT)
-        self.lbl_search5.grid(row = 4, column = 0, sticky = "news")        
+        self.lbl_date = tk.Label(self,text = "Date Purchased: ", font = BUTTON_FONT)
+        self.lbl_date.grid(row = 10, column = 2, sticky = "news")
         
-        self.lbl_search6 = tk.Label(self,text = "Year: ", font = BUTTON_FONT)
-        self.lbl_search6.grid(row = 6, column = 0, sticky = "news")        
+        self.lbl_genre = tk.Label(self,text = "Genre: ", font = BUTTON_FONT)
+        self.lbl_genre.grid(row = 2, column = 0, sticky = "news")        
         
-        self.lbl_search7 = tk.Label(self,text = "Notes: ", font = BUTTON_FONT)
-        self.lbl_search7.grid(row = 10, column = 1, sticky = "news")        
+        self.lbl_developer = tk.Label(self,text = "Dev: ", font = BUTTON_FONT)
+        self.lbl_developer.grid(row = 4, column = 0, sticky = "news")        
+        
+        self.lbl_console = tk.Label(self,text = "Console: ", font = BUTTON_FONT)
+        self.lbl_console.grid(row = 6, column = 0, sticky = "news")   
+        
+        self.lbl_rating = tk.Label(self,text = "Rating: ", font = BUTTON_FONT)
+        self.lbl_rating.grid(row = 8, column = 0, sticky = "news")  
+        
+        self.lbl_price = tk.Label(self,text = "Price: ", font = BUTTON_FONT)
+        self.lbl_price.grid(row = 10, column = 0, sticky = "news")        
+        
+        self.lbl_notes = tk.Label(self,text = "Notes: ", font = BUTTON_FONT)
+        self.lbl_notes.grid(row = 11, column = 1, sticky = "news")                
         
         self.btn_cancel = tk.Button(self, text = "Cancel", command = self.go_back, font = BUTTON_FONT)
         self.btn_cancel.grid(row = 14, column = 0, sticky = "news")        
         
-        self.btn_reset = tk.Button(self, text = "Reset", font = BUTTON_FONT)
+        self.btn_reset = tk.Button(self, text = "Reset", command = self.clear, font = BUTTON_FONT)
         self.btn_reset.grid(row = 14, column = 1, sticky = "news")
         
         self.btn_confirm = tk.Button(self, text = "Confirm", font = BUTTON_FONT)
@@ -162,30 +175,69 @@ class AddMenu(Screen):
         self.tkvar = tk.StringVar(self)
         self.tkvar.set(options[0])
       
-        self.ent_box1 = tk.Entry(self)
-        self.ent_box1.grid(row = 2, column = 3, sticky = "news")        
+        self.ent_title = tk.Entry(self)
+        self.ent_title.grid(row = 2, column = 3, sticky = "news")        
          
-        self.ent_box2 = tk.Entry(self)
-        self.ent_box2.grid(row = 4, column = 3, sticky = "news")     
+        self.ent_pub = tk.Entry(self)
+        self.ent_pub.grid(row = 4, column = 3, sticky = "news")     
         
-        self.ent_box3 = tk.Entry(self)
-        self.ent_box3.grid(row = 6, column = 3, sticky = "news")
+        self.ent_made = tk.Entry(self)
+        self.ent_made.grid(row = 6, column = 3, sticky = "news")
         
-        self.ent_box4 = tk.Entry(self)
-        self.ent_box4.grid(row = 2, column = 1, sticky = "news")  
+        self.ent_player = tk.Entry(self)
+        self.ent_player.grid(row = 8, column = 3, sticky = "news")
         
-        self.ent_box5 = tk.Entry(self)
-        self.ent_box5.grid(row = 4, column = 1, sticky = "news")    
+        self.ent_date = tk.Entry(self)
+        self.ent_date.grid(row = 10, column = 3, sticky = "news")
         
-        self.ent_box6 = tk.Entry(self)
-        self.ent_box6.grid(row = 6, column = 1, sticky = "news")        
+        self.ent_genre = tk.Entry(self)
+        self.ent_genre.grid(row = 2, column = 1, sticky = "news")  
+        
+        self.ent_dev = tk.Entry(self)
+        self.ent_dev.grid(row = 4, column = 1, sticky = "news")    
+        
+        self.ent_console = tk.Entry(self)
+        self.ent_console.grid(row = 6, column = 1, sticky = "news")    
+        
+        self.ent_rating = tk.Entry(self)
+        self.ent_rating.grid(row = 8, column = 1, sticky = "news")
+        
+        self.ent_price = tk.Entry(self)
+        self.ent_price.grid(row = 10, column = 1, sticky = "news")
+                        
         
         self.scrolled_text = ScrolledText(self, width = 40, height = 8)
         self.scrolled_text.grid(row = 12, column = 0, columnspan = 3)     
         
     def go_back(self):
         Screen.current = 0
-        Screen.switch_frame()      
+        Screen.switch_frame()   
+        
+    def clear(self):
+       
+        
+        self.ent_genre.delete(0,"end")
+        
+        self.ent_dev.delete(0,"end")
+    
+        self.ent_console.delete(0,"end")
+    
+        self.ent_title.delete(0,"end")
+    
+        self.ent_pub.delete(0,"end")
+    
+        self.ent_made.delete(0,"end")
+        
+        self.ent_rating.delete(0,"end")
+               
+        self.ent_player.delete(0,"end")
+        
+        self.ent_price.delete(0,"end")
+               
+        self.ent_date.delete(0,"end")
+           
+        self.scrolled_text.delete(0.0,"end")
+       
         
 class BTN_Filters(tk.Frame):
     def __init__(self, parent):
