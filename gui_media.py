@@ -10,7 +10,6 @@ from tkinter.scrolledtext import ScrolledText
 from tkinter import messagebox
 
 
-messagebox.showinfo(message="Entry has been added.")
 
 TITLE_FONT = ("Times New Roman", 24)
 BUTTON_FONT = ("Arial", 15)
@@ -247,6 +246,7 @@ class AddMenu(Screen):
        
     def add(self):
         Screen.current = 0
+        messagebox.showinfo(message="Entry has been added.")
         Screen.switch_frame()
         
         entry = []
