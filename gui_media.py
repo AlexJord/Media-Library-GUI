@@ -7,7 +7,10 @@
 import pickle
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
+from tkinter import messagebox
 
+
+messagebox.showinfo(message="Entry has been added.")
 
 TITLE_FONT = ("Times New Roman", 24)
 BUTTON_FONT = ("Arial", 15)
@@ -163,7 +166,7 @@ class AddMenu(Screen):
         self.btn_reset = tk.Button(self, text = "Reset", command = self.clear, font = BUTTON_FONT)
         self.btn_reset.grid(row = 14, column = 1, sticky = "news")
         
-        self.btn_confirm = tk.Button(self, text = "Confirm", font = BUTTON_FONT)
+        self.btn_confirm = tk.Button(self, text = "Confirm", command = self.add, font = BUTTON_FONT)
         self.btn_confirm.grid(row = 14, column = 2, sticky = "news")   
         
                 
@@ -241,6 +244,36 @@ class AddMenu(Screen):
            
         self.scrolled_text.delete(0.0,"end")
        
+       
+    def add(self):
+        Screen.current = 0
+        Screen.switch_frame()
+        
+        entry = []
+        entry.append(self.ent_genre.get())
+        
+        entry.append(self.ent_title.get())
+        
+        entry.append(self.ent_dev.get())
+        
+        entry.append(self.ent_pub.get())
+        
+        entry.append(self.ent_console.get())
+        
+        entry.append(self.ent_made.get())
+        
+        entry.append(self.ent_rating.get())
+        
+        entry.append(self.ent_player.get())
+        
+        entry.append(self.ent_price.get())
+        
+        entry.append("")
+        
+        entry.append(self.ent_date.get())
+        
+        entry.append(self.scrolled_text.get(0.0, "end"))
+        games[len(games)+1] = entry           
         
 class BTN_Filters(tk.Frame):
     def __init__(self, parent):
@@ -327,7 +360,7 @@ class Edit_Menu(Screen):
         self.btn_cancel = tk.Button(self, text = "Cancel", command = self.go_back, font = BUTTON_FONT)
         self.btn_cancel.grid(row = 22, column = 0, sticky = "news")        
         
-        self.btn_confirm = tk.Button(self, text = "Confirm", font = BUTTON_FONT)
+        self.btn_confirm = tk.Button(self, text = "Confirm", command = self.confirmed_edit, font = BUTTON_FONT)
         self.btn_confirm.grid(row = 22, column = 2, sticky = "news")   
         
                 
@@ -383,8 +416,31 @@ class Edit_Menu(Screen):
         Screen.switch_frame()    
         
     def confirmed_edit(self):
+        Screen.current = 0
+        Screen.switch_frame()
+        
         entry = []
         entry.append(self.ent_genre.get())
+        
+        entry.append(self.ent_title.get())
+        
+        entry.append(self.ent_dev.get())
+        
+        entry.append(self.ent_pub.get())
+        
+        entry.append(self.ent_console.get())
+        
+        entry.append(self.ent_made.get())
+        
+        entry.append(self.ent_rating.get())
+        
+        entry.append(self.ent_player.get())
+        
+        entry.append(self.ent_price.get())
+        
+        entry.append("")
+        
+        entry.append(self.ent_date.get())
         
         entry.append(self.scrolled_text.get(0.0, "end"))
         games[self.edit_key] = entry
