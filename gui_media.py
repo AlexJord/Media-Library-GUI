@@ -151,7 +151,8 @@ class AddMenu(Screen):
         self.lbl_rating.grid(row = 8, column = 0, sticky = "news")  
         
         self.lbl_price = tk.Label(self,text = "Price: ", font = BUTTON_FONT)
-        self.lbl_price.grid(row = 10, column = 0, sticky = "news")        
+        self.lbl_price.grid(row = 10, column = 0, sticky = "news")    
+               
         
         self.lbl_notes = tk.Label(self,text = "Notes: ", font = BUTTON_FONT)
         self.lbl_notes.grid(row = 11, column = 1, sticky = "news")                
@@ -204,7 +205,9 @@ class AddMenu(Screen):
         
         self.ent_price = tk.Entry(self)
         self.ent_price.grid(row = 10, column = 1, sticky = "news")
-                        
+        
+        self.chk_beaten = tk.Checkbutton(self,text="Beaten")
+        self.chk_beaten.grid(row = 11, column = 3, sticky = "news")
         
         self.scrolled_text = ScrolledText(self, width = 40, height = 8)
         self.scrolled_text.grid(row = 12, column = 0, columnspan = 3)     
@@ -317,8 +320,9 @@ class Edit_Menu(Screen):
         self.lbl_price = tk.Label(self,text = "Price: ", font = BUTTON_FONT)
         self.lbl_price.grid(row = 10, column = 0, sticky = "news")        
         
+        
         self.lbl_notes = tk.Label(self,text = "Notes: ", font = BUTTON_FONT)
-        self.lbl_notes.grid(row = 11, column = 1, sticky = "news")        
+        self.lbl_notes.grid(row = 12, column = 1, sticky = "news")        
         
         self.btn_cancel = tk.Button(self, text = "Cancel", command = self.go_back, font = BUTTON_FONT)
         self.btn_cancel.grid(row = 22, column = 0, sticky = "news")        
@@ -366,6 +370,9 @@ class Edit_Menu(Screen):
         self.ent_price = tk.Entry(self)
         self.ent_price.grid(row = 10, column = 1, sticky = "news")
         
+        self.chk_beaten = tk.Checkbutton(self,text="Beaten")
+        self.chk_beaten.grid(row = 11, column = 3, sticky = "news")        
+        
         self.scrolled_text = ScrolledText(self, width = 40, height = 8)
         self.scrolled_text.grid(row = 12, column = 0, columnspan = 3)
         
@@ -411,6 +418,7 @@ class Edit_Menu(Screen):
         
         self.ent_price.delete(0,"end")
         self.ent_price.insert(0,game[8])        
+        
         
         self.ent_date.delete(0,"end")
         self.ent_date.insert(0,game[10])        
