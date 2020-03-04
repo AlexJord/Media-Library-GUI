@@ -93,7 +93,7 @@ class SearchMenu(Screen):
         self.btn_clear = tk.Button(self, text = "Clear", command = self.clear, font = BUTTON_FONT)
         self.btn_clear.grid(row = 6, column = 1, sticky = "news")   
         
-        self.btn_submit = tk.Button(self, text = "Submit", font = BUTTON_FONT)
+        self.btn_submit = tk.Button(self, text = "Submit", command = self.submit_search, font = BUTTON_FONT)
         self.btn_submit.grid(row = 6, column = 2, sticky = "news")        
         
         self.grid_columnconfigure(0, weight = 1)
@@ -207,6 +207,11 @@ class SearchMenu(Screen):
         
         self.scrolled_text.delete(0.0, "end")
         
+        
+    def submit_search(self):
+        for key in games.keys():
+            entry = games[key]
+            self.filter_print(entry)
         
 class AddMenu(Screen):
     def __init__(self):
@@ -438,6 +443,7 @@ class BTN_Filters(tk.Frame):
         
         self.notes = tk.Checkbutton(self, text = "Notes", variable = self.tkvar_notes)
         self.notes.grid(row = 3, column = 2, sticky = "news")        
+         
          
          
          
