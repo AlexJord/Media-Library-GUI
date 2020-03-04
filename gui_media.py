@@ -279,40 +279,76 @@ class BTN_Filters(tk.Frame):
     def __init__(self, parent):
         tk.Frame.__init__(self, master=parent)
         
-        self.title = tk.Checkbutton(self, text = "Title")
+        self.tkvar_title = tk.BooleanVar(self)
+        self.tkvar_title.set(True)
+        
+        self.title = tk.Checkbutton(self, text = "Title", variable = self.tkvar_title)
         self.title.grid(row = 0, column = 0, sticky = "news")
         
-        self.genre = tk.Checkbutton(self, text = "Genre")
+        self.tkvar_genre = tk.BooleanVar(self)
+        self.tkvar_genre.set(True)
+        
+        self.genre = tk.Checkbutton(self, text = "Genre", variable = self.tkvar_genre)
         self.genre.grid(row = 1, column = 0, sticky = "news")
         
-        self.developer = tk.Checkbutton(self, text = "Developer") 
+        self.tkvar_dev = tk.BooleanVar(self)
+        self.tkvar_dev.set(True)
+        
+        self.developer = tk.Checkbutton(self, text = "Developer", variable = self.tkvar_dev) 
         self.developer.grid(row = 2, column = 0, sticky = "news")   
         
-        self.publisher = tk.Checkbutton(self, text = "Publisher")
+        self.tkvar_pub = tk.BooleanVar(self)
+        self.tkvar_pub.set(True)
+        
+        self.publisher = tk.Checkbutton(self, text = "Publisher", variable = self.tkvar_pub)
         self.publisher.grid(row = 3, column = 0, sticky = "news")     
         
-        self.system = tk.Checkbutton(self, text = "System")
+        self.tkvar_system = tk.BooleanVar(self)
+        self.tkvar_system.set(True)
+        
+        self.system = tk.Checkbutton(self, text = "System", variable = self.tkvar_system)
         self.system.grid(row = 0, column = 1, sticky = "news")  
         
-        self.release = tk.Checkbutton(self, text = "Release Date")
+        self.tkvar_date = tk.BooleanVar(self)
+        self.tkvar_date.set(True)
+        
+        self.release = tk.Checkbutton(self, text = "Release Date", variable = self.tkvar_date)
         self.release.grid(row = 1, column = 1, sticky = "news")   
         
-        self.rating = tk.Checkbutton(self, text = "Rating")
+        self.tkvar_rating = tk.BooleanVar(self)
+        self.tkvar_rating.set(True)
+        
+        self.rating = tk.Checkbutton(self, text = "Rating", variable = self.tkvar_rating)
         self.rating.grid(row = 2, column = 1, sticky = "news")        
         
-        self.category = tk.Checkbutton(self, text = "Category")
+        self.tkvar_category = tk.BooleanVar(self)
+        self.tkvar_category.set(True)
+        
+        self.category = tk.Checkbutton(self, text = "Category", variable = self.tkvar_category)
         self.category.grid(row = 3, column = 1, sticky = "news")        
         
-        self.price = tk.Checkbutton(self, text = "Price")
+        self.tkvar_price = tk.BooleanVar(self)
+        self.tkvar_price.set(True)
+        
+        self.price = tk.Checkbutton(self, text = "Price", variable = self.tkvar_price)
         self.price.grid(row = 0, column = 2, sticky = "news")     
         
-        self.beat = tk.Checkbutton(self, text = "Beat Game")
+        self.tkvar_beat = tk.BooleanVar(self)
+        self.tkvar_beat.set(True)
+        
+        self.beat = tk.Checkbutton(self, text = "Beat Game", variable = self.tkvar_beat)
         self.beat.grid(row = 1, column = 2, sticky = "news")        
             
-        self.date = tk.Checkbutton(self, text = "Purchase Date")
+        self.tkvar_purchase = tk.BooleanVar(self)
+        self.tkvar_purchase.set(True)
+            
+        self.date = tk.Checkbutton(self, text = "Purchase Date", variable = self.tkvar_purchase)
         self.date.grid(row = 2, column = 2, sticky = "news") 
         
-        self.notes = tk.Checkbutton(self, text = "Notes")
+        self.tkvar_notes = tk.BooleanVar(self)
+        self.tkvar_notes.set(True)
+        
+        self.notes = tk.Checkbutton(self, text = "Notes", variable = self.tkvar_notes)
         self.notes.grid(row = 3, column = 2, sticky = "news")        
          
          
