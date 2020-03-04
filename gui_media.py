@@ -125,6 +125,51 @@ class SearchMenu(Screen):
             messagebox = entry[0] + "\n"
             self.scrolled_text.insert("insert", messagebox)
             
+                       
+        if self.btn_filters.tkvar_title.get() == True:
+            messagebox = entry[0] + "\n"
+            self.scrolled_text.insert("insert", messagebox)
+            
+        if self.btn_filters.tkvar_dev.get() == True:
+            messagebox = entry[0] + "\n"
+            self.scrolled_text.insert("insert", messagebox)        
+            
+        if self.btn_filters.tkvar_pub.get() == True:
+            messagebox = entry[0] + "\n"
+            self.scrolled_text.insert("insert", messagebox)  
+            
+        if self.btn_filters.tkvar_system.get() == True:
+            messagebox = entry[0] + "\n"
+            self.scrolled_text.insert("insert", messagebox)        
+            
+        if self.btn_filters.tkvar_date.get() == True:
+            messagebox = entry[0] + "\n"
+            self.scrolled_text.insert("insert", messagebox)            
+ 
+        if self.btn_filters.tkvar_rating.get() == True:
+            messagebox = entry[0] + "\n"
+            self.scrolled_text.insert("insert", messagebox) 
+
+        if self.btn_filters.tkvar_category.get() == True:
+            messagebox = entry[0] + "\n"
+            self.scrolled_text.insert("insert", messagebox) 
+                
+        if self.btn_filters.tkvar_price.get() == True:
+            messagebox = entry[0] + "\n"
+            self.scrolled_text.insert("insert", messagebox)                
+            
+        if self.btn_filters.tkvar_beat.get() == True:
+            messagebox = entry[0] + "\n"
+            self.scrolled_text.insert("insert", messagebox)            
+            
+        if self.btn_filters.tkvar_purchase.get() == True:
+            messagebox = entry[0] + "\n"
+            self.scrolled_text.insert("insert", messagebox)            
+            
+        if self.btn_filters.tkvar_notes.get() == True:
+            messagebox = entry[0] + "\n"
+            self.scrolled_text.insert("insert", messagebox)            
+            
             messagebox = "*****************\n"
             self.scr_results.insert("insert", messagebox)
         
