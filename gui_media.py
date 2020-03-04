@@ -215,7 +215,7 @@ class SearchMenu(Screen):
         for key in games.keys():
             entry = games[key]
             self.filter_print(entry)
-        
+         
 class AddMenu(Screen):
     def __init__(self):
         Screen.__init__(self)
