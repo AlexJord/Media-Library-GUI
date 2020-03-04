@@ -116,62 +116,97 @@ class SearchMenu(Screen):
         self.scrolled_text = ScrolledText(self, width = 40, height = 8)
         self.scrolled_text.grid(row = 5, column = 0, columnspan = 3)  
         
+        for key in games.keys():
+            entry = games[key]
+            self.filter_print(entry)
+        
     def go_back(self):
         Screen.current = 0
         Screen.switch_frame()        
         
     def filter_print(self, entry):
+        
+        
         if self.btn_filters.tkvar_genre.get() == True:
             messagebox = entry[0] + "\n"
             self.scrolled_text.insert("insert", messagebox)
-            
-                       
+                      
         if self.btn_filters.tkvar_title.get() == True:
-            messagebox = entry[0] + "\n"
+            messagebox = entry[1] + "\n"
             self.scrolled_text.insert("insert", messagebox)
             
         if self.btn_filters.tkvar_dev.get() == True:
-            messagebox = entry[0] + "\n"
+            messagebox = entry[2] + "\n"
             self.scrolled_text.insert("insert", messagebox)        
             
         if self.btn_filters.tkvar_pub.get() == True:
-            messagebox = entry[0] + "\n"
+            messagebox = entry[3] + "\n"
             self.scrolled_text.insert("insert", messagebox)  
             
         if self.btn_filters.tkvar_system.get() == True:
-            messagebox = entry[0] + "\n"
+            messagebox = entry[4] + "\n"
             self.scrolled_text.insert("insert", messagebox)        
             
         if self.btn_filters.tkvar_date.get() == True:
-            messagebox = entry[0] + "\n"
+            messagebox = entry[5] + "\n"
             self.scrolled_text.insert("insert", messagebox)            
  
         if self.btn_filters.tkvar_rating.get() == True:
-            messagebox = entry[0] + "\n"
+            messagebox = entry[6] + "\n"
             self.scrolled_text.insert("insert", messagebox) 
 
         if self.btn_filters.tkvar_category.get() == True:
-            messagebox = entry[0] + "\n"
+            messagebox = entry[7] + "\n"
             self.scrolled_text.insert("insert", messagebox) 
                 
         if self.btn_filters.tkvar_price.get() == True:
-            messagebox = entry[0] + "\n"
+            messagebox = entry[8] + "\n"
             self.scrolled_text.insert("insert", messagebox)                
             
         if self.btn_filters.tkvar_beat.get() == True:
-            messagebox = entry[0] + "\n"
+            messagebox = entry[9] + "\n"
             self.scrolled_text.insert("insert", messagebox)            
             
         if self.btn_filters.tkvar_purchase.get() == True:
-            messagebox = entry[0] + "\n"
+            messagebox = entry[10] + "\n"
             self.scrolled_text.insert("insert", messagebox)            
             
         if self.btn_filters.tkvar_notes.get() == True:
-            messagebox = entry[0] + "\n"
+            messagebox = entry[11] + "\n"
             self.scrolled_text.insert("insert", messagebox)            
             
             messagebox = "*****************\n"
-            self.scr_results.insert("insert", messagebox)
+            self.scrolled_text.insert("insert", messagebox)
+            
+    def clear(self):
+        
+        
+        self.btn_filters.tkvar_genre.set(False)
+        
+        self.btn_filters.tkvar_title.set(False)
+        
+        self.btn_filters.tkvar_dev.set(False)
+        
+        self.btn_filters.tkvar_pub.set(False)
+        
+        self.btn_filters.tkvar_system.set(False)
+        
+        self.btn_filters.tkvar_date.set(False)
+        
+        self.btn_filters.tkvar_rating.set(False)
+        
+        self.btn_filters.tkvar_category.set(False)
+        
+        self.btn_filters.tkvar_price.set(False)
+        
+        self.btn_filters.tkvar_beat.set(False)
+        
+        self.btn_filters.tkvar_purchase.set(False)
+        
+        self.btn_filters.tkvar_notes.set(False)
+        
+        self.scrolled_text.delete(0.0, "end")
+        
         
 class AddMenu(Screen):
     def __init__(self):
