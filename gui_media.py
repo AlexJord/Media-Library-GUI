@@ -209,6 +209,9 @@ class SearchMenu(Screen):
         
         
     def submit_search(self):
+        
+        self.scrolled_text.delete(0.0, "end")
+        
         for key in games.keys():
             entry = games[key]
             self.filter_print(entry)
