@@ -90,7 +90,7 @@ class SearchMenu(Screen):
         self.btn_back = tk.Button(self, text = "Back", command = self.go_back, font = BUTTON_FONT)
         self.btn_back.grid(row = 6, column = 0, sticky = "news")        
         
-        self.btn_clear = tk.Button(self, text = "Clear", font = BUTTON_FONT)
+        self.btn_clear = tk.Button(self, text = "Clear", command = self.clear, font = BUTTON_FONT)
         self.btn_clear.grid(row = 6, column = 1, sticky = "news")   
         
         self.btn_submit = tk.Button(self, text = "Submit", font = BUTTON_FONT)
