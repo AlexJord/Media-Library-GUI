@@ -110,8 +110,8 @@ class SearchMenu(Screen):
         self.ent_box2 = tk.Entry(self)
         self.ent_box2.grid(row = 4, column = 0, sticky = "news")     
         
-        btn_filters = BTN_Filters(self)
-        btn_filters.grid(row = 1, column = 1)        
+        self.btn_filters = BTN_Filters(self)
+        self.btn_filters.grid(row = 1, column = 1)        
         
         self.scrolled_text = ScrolledText(self, width = 40, height = 8)
         self.scrolled_text.grid(row = 5, column = 0, columnspan = 3)  
@@ -119,6 +119,14 @@ class SearchMenu(Screen):
     def go_back(self):
         Screen.current = 0
         Screen.switch_frame()        
+        
+    def filter_print(self, entry):
+        if self.btn_filters.tkvar_genre.get() == True:
+            messagebox = entry[0] + "\n"
+            self.scrolled_text.insert("insert", messagebox)
+            
+            messagebox = "*****************\n"
+            self.scr_results.insert("insert", messagebox)
         
 class AddMenu(Screen):
     def __init__(self):
@@ -350,6 +358,7 @@ class BTN_Filters(tk.Frame):
         
         self.notes = tk.Checkbutton(self, text = "Notes", variable = self.tkvar_notes)
         self.notes.grid(row = 3, column = 2, sticky = "news")        
+         
          
          
 class Edit_Menu(Screen):
