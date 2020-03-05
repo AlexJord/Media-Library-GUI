@@ -92,7 +92,7 @@ class SearchMenu(Screen):
         self.btn_clear = tk.Button(self, text = "Clear", command = self.clear, font = BUTTON_FONT)
         self.btn_clear.grid(row = 6, column = 1, sticky = "news")   
         
-        self.btn_submit = tk.Button(self, text = "Submit", command = self.submit_search, font = BUTTON_FONT)
+        self.btn_submit = tk.Button(self, text = "Submit", command = self.print_search, font = BUTTON_FONT)
         self.btn_submit.grid(row = 6, column = 2, sticky = "news")        
         
         self.grid_columnconfigure(0, weight = 1)
@@ -113,6 +113,7 @@ class SearchMenu(Screen):
             "Beaten",
             "Date Purchase"
         ]
+        
         self.tkvar = tk.StringVar(self)
         self.tkvar.set(self.options[0])
        
@@ -222,16 +223,56 @@ class SearchMenu(Screen):
     def print_search(self):
         self.scr_txt.delete(0.0, "end")
         
-        keyword = self.ent_search_for.get()
+        keyword = self.tkvar.get()
         
         for key in games.keys():
             entry = games[key]
-            if self.tkvar.get == self.options[0]:
+            if self.tkvar.get() == self.options[0]:
                 self.filter_print(entry)
                 
-            if self.tkvar.get == self.options[1]:
+            if self.tkvar.get() == self.options[1]:
                 if keyword in entry[0]:
                     self.filter_print(entry)
+                    
+            if self.tkvar.get() == self.options[2]:
+                if keyword in entry[1]:
+                    self.filter_print(entry)     
+                    
+            if self.tkvar.get() == self.options[3]:
+                if keyword in entry[2]:
+                    self.filter_print(entry)
+                    
+            if self.tkvar.get() == self.options[4]:
+                if keyword in entry[3]:
+                    self.filter_print(entry)                    
+                    
+            if self.tkvar.get() == self.options[5]:
+                if keyword in entry[4]:
+                    self.filter_print(entry)                    
+                    
+            if self.tkvar.get() == self.options[6]:
+                if keyword in entry[5]:
+                    self.filter_print(entry)                    
+                    
+            if self.tkvar.get() == self.options[7]:
+                if keyword in entry[6]:
+                    self.filter_print(entry)                    
+                    
+            if self.tkvar.get() == self.options[8]:
+                if keyword in entry[7]:
+                    self.filter_print(entry)                    
+                    
+            if self.tkvar.get() == self.options[9]:
+                if keyword in entry[8]:
+                    self.filter_print(entry)                    
+                    
+            if self.tkvar.get() == self.options[10]:
+                if keyword in entry[9]:
+                    self.filter_print(entry)                    
+                    
+            if self.tkvar.get() == self.options[11]:
+                if keyword in entry[10]:
+                    self.filter_print(entry)                    
                                 
             
         
