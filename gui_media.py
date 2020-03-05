@@ -100,7 +100,7 @@ class SearchMenu(Screen):
         self.grid_columnconfigure(2, weight = 1)
         
         self.options = [
-            "Select Option",
+            "All",
             "Genre",
             "Title",
             "Company",
@@ -223,16 +223,17 @@ class SearchMenu(Screen):
     def print_search(self):
         self.scr_txt.delete(0.0, "end")
         
-        keyword = self.tkvar.get()
+        keyword = self.ent_box2.get()
         
         for key in games.keys():
             entry = games[key]
             if self.tkvar.get() == self.options[0]:
                 self.filter_print(entry)
-                
-            if self.tkvar.get() == self.options[1]:
+            
+            if self.tkvar.get() == self.options[1]:                
                 if keyword in entry[0]:
                     self.filter_print(entry)
+                    
                     
             if self.tkvar.get() == self.options[2]:
                 if keyword in entry[1]:
