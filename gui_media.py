@@ -99,11 +99,24 @@ class SearchMenu(Screen):
         self.grid_columnconfigure(1, weight = 1)
         self.grid_columnconfigure(2, weight = 1)
         
-        options = ["one", "two"]
+        self.options = [
+            "Select Option",
+            "Genre",
+            "Title",
+            "Company",
+            "Publisher",
+            "Console",
+            "Release Year",
+            "Rating",
+            "Multi/Single player",
+            "Price",
+            "Beaten",
+            "Date Purchase"
+        ]
         self.tkvar = tk.StringVar(self)
-        self.tkvar.set(options[0])
+        self.tkvar.set(self.options[0])
        
-        self.ent_box1 = tk.OptionMenu(self, self.tkvar, *options)
+        self.ent_box1 = tk.OptionMenu(self, self.tkvar, *self.options)
         self.ent_box1.grid(row = 2, column = 0, sticky = "news")        
          
         self.ent_box2 = tk.Entry(self)
@@ -212,9 +225,15 @@ class SearchMenu(Screen):
         keyword = self.ent_search_for.get()
         
         for key in games.keys():
+            entry = games[key]
             if self.tkvar.get == self.options[0]:
-                entry = games[key]
                 self.filter_print(entry)
+                
+            if self.tkvar.get == self.options[1]:
+                if keyword in entry[0]:
+                    self.filter_print(entry)
+                                
+            
         
         
     def submit_search(self):
