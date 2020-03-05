@@ -117,11 +117,11 @@ class SearchMenu(Screen):
         self.tkvar = tk.StringVar(self)
         self.tkvar.set(self.options[0])
        
-        self.ent_box1 = tk.OptionMenu(self, self.tkvar, *self.options)
-        self.ent_box1.grid(row = 2, column = 0, sticky = "news")        
+        self.ent_search_by = tk.OptionMenu(self, self.tkvar, *self.options)
+        self.ent_search_by.grid(row = 2, column = 0, sticky = "news")        
          
-        self.ent_box2 = tk.Entry(self)
-        self.ent_box2.grid(row = 4, column = 0, sticky = "news")     
+        self.ent_search_for = tk.Entry(self)
+        self.ent_search_for.grid(row = 4, column = 0, sticky = "news")     
         
         self.btn_filters = BTN_Filters(self)
         self.btn_filters.grid(row = 1, column = 1)        
@@ -223,7 +223,7 @@ class SearchMenu(Screen):
     def print_search(self):
         self.scr_txt.delete(0.0, "end")
         
-        keyword = self.ent_box2.get()
+        keyword = self.ent_search_for.get()
         
         for key in games.keys():
             entry = games[key]
