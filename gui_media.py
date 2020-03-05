@@ -8,8 +8,8 @@ import pickle
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
 from tkinter import messagebox
-
-
+import tkinter.messagebox as msg
+import tkinter.scrolledtext as scr_txt
 
 TITLE_FONT = ("Times New Roman", 24)
 BUTTON_FONT = ("Arial", 15)
@@ -113,8 +113,8 @@ class SearchMenu(Screen):
         self.btn_filters = BTN_Filters(self)
         self.btn_filters.grid(row = 1, column = 1)        
         
-        self.scrolled_text = ScrolledText(self, width = 40, height = 8)
-        self.scrolled_text.grid(row = 5, column = 0, columnspan = 3)  
+        self.scr_txt = ScrolledText(self, width = 40, height = 8)
+        self.scr_txt.grid(row = 5, column = 0, columnspan = 3)  
         
         for key in games.keys():
             entry = games[key]
@@ -128,55 +128,55 @@ class SearchMenu(Screen):
         
         
         if self.btn_filters.tkvar_genre.get() == True:
-            messagebox = entry[0] + "\n"
-            self.scrolled_text.insert("insert", messagebox)
+            msg = entry[0] + "\n"
+            self.scr_txt.insert("insert", msg)
                       
         if self.btn_filters.tkvar_title.get() == True:
-            messagebox = entry[1] + "\n"
-            self.scrolled_text.insert("insert", messagebox)
+            msg = entry[1] + "\n"
+            self.scr_txt.insert("insert", msg)
             
         if self.btn_filters.tkvar_dev.get() == True:
-            messagebox = entry[2] + "\n"
-            self.scrolled_text.insert("insert", messagebox)        
+            msg = entry[2] + "\n"
+            self.scr_txt.insert("insert", msg)        
             
         if self.btn_filters.tkvar_pub.get() == True:
-            messagebox = entry[3] + "\n"
-            self.scrolled_text.insert("insert", messagebox)  
+            msg = entry[3] + "\n"
+            self.scr_txt.insert("insert", msg)  
             
         if self.btn_filters.tkvar_system.get() == True:
-            messagebox = entry[4] + "\n"
-            self.scrolled_text.insert("insert", messagebox)        
+            msg = entry[4] + "\n"
+            self.scr_txt.insert("insert", msg)        
             
         if self.btn_filters.tkvar_date.get() == True:
-            messagebox = entry[5] + "\n"
-            self.scrolled_text.insert("insert", messagebox)            
+            msg = entry[5] + "\n"
+            self.scr_txt.insert("insert", msg)            
  
         if self.btn_filters.tkvar_rating.get() == True:
-            messagebox = entry[6] + "\n"
-            self.scrolled_text.insert("insert", messagebox) 
+            msg = entry[6] + "\n"
+            self.scr_txt.insert("insert", msg) 
 
         if self.btn_filters.tkvar_category.get() == True:
-            messagebox = entry[7] + "\n"
-            self.scrolled_text.insert("insert", messagebox) 
+            msg = entry[7] + "\n"
+            self.scr_txt.insert("insert", msg) 
                 
         if self.btn_filters.tkvar_price.get() == True:
-            messagebox = entry[8] + "\n"
-            self.scrolled_text.insert("insert", messagebox)                
+            msg = entry[8] + "\n"
+            self.scr_txt.insert("insert", msg)                
             
         if self.btn_filters.tkvar_beat.get() == True:
-            messagebox = entry[9] + "\n"
-            self.scrolled_text.insert("insert", messagebox)            
+            msg = entry[9] + "\n"
+            self.scr_txt.insert("insert", msg)            
             
         if self.btn_filters.tkvar_purchase.get() == True:
-            messagebox = entry[10] + "\n"
-            self.scrolled_text.insert("insert", messagebox)            
+            msg = entry[10] + "\n"
+            self.scr_txt.insert("insert", msg)            
             
         if self.btn_filters.tkvar_notes.get() == True:
-            messagebox = entry[11] + "\n"
-            self.scrolled_text.insert("insert", messagebox)            
+            msg = entry[11] + "\n"
+            self.scr_txt.insert("insert", msg)            
             
-            messagebox = "*****************\n"
-            self.scrolled_text.insert("insert", messagebox)
+            msg = "*****************\n"
+            self.scr_txt.insert("insert", msg)
             
     def clear(self):
         
@@ -205,12 +205,12 @@ class SearchMenu(Screen):
         
         self.btn_filters.tkvar_notes.set(False)
         
-        self.scrolled_text.delete(0.0, "end")
+        self.scr_txt.delete(0.0, "end")
         
         
     def submit_search(self):
         
-        self.scrolled_text.delete(0.0, "end")
+        self.scr_txt.delete(0.0, "end")
         
         for key in games.keys():
             entry = games[key]
@@ -307,8 +307,8 @@ class AddMenu(Screen):
         self.chk_beaten = tk.Checkbutton(self,text="Beaten")
         self.chk_beaten.grid(row = 11, column = 3, sticky = "news")
         
-        self.scrolled_text = ScrolledText(self, width = 40, height = 8)
-        self.scrolled_text.grid(row = 12, column = 0, columnspan = 3)     
+        self.scr_txt = ScrolledText(self, width = 40, height = 8)
+        self.scr_txt.grid(row = 12, column = 0, columnspan = 3)     
         
     def go_back(self):
         Screen.current = 0
@@ -337,12 +337,21 @@ class AddMenu(Screen):
                
         self.ent_date.delete(0,"end")
            
-        self.scrolled_text.delete(0.0,"end")
+        self.scr_txt.delete(0.0,"end")
        
        
     def add(self):
+        
+        if self.ent_title.get() == "":
+            popup = tk.Tk()
+            popup.title("~")
+            msg = "ERROR, select a title"
+            self.frm_error = PopMessage(popup, msg)
+            self.frm_error.grid(row = 0, column = 0)
+            return
+            
         Screen.current = 0
-        messagebox.showinfo(message="Entry has been added.")
+        msg.showinfo(message="Entry has been added.")
         Screen.switch_frame()
         
         entry = []
@@ -368,7 +377,7 @@ class AddMenu(Screen):
         
         entry.append(self.ent_date.get())
         
-        entry.append(self.scrolled_text.get(0.0, "end"))
+        entry.append(self.scr_txt.get(0.0, "end"))
         games[len(games)+1] = entry           
         
 class BTN_Filters(tk.Frame):
@@ -540,8 +549,8 @@ class Edit_Menu(Screen):
         self.chk_beaten = tk.Checkbutton(self,text="Beaten")
         self.chk_beaten.grid(row = 11, column = 3, sticky = "news")        
         
-        self.scrolled_text = ScrolledText(self, width = 40, height = 8)
-        self.scrolled_text.grid(row = 12, column = 0, columnspan = 3)
+        self.scr_txt = ScrolledText(self, width = 40, height = 8)
+        self.scr_txt.grid(row = 12, column = 0, columnspan = 3)
         
         
         
@@ -576,7 +585,7 @@ class Edit_Menu(Screen):
         
         entry.append(self.ent_date.get())
         
-        entry.append(self.scrolled_text.get(0.0, "end"))
+        entry.append(self.scr_txt.get(0.0, "end"))
         games[self.edit_key] = entry
     
     def update(self):
@@ -614,8 +623,8 @@ class Edit_Menu(Screen):
         self.ent_date.insert(0,game[10])        
     
     
-        self.scrolled_text.delete(0.0,"end")
-        self.scrolled_text.insert(0.0,game[11])    
+        self.scr_txt.delete(0.0,"end")
+        self.scr_txt.insert(0.0,game[11])    
         
     
    
@@ -726,6 +735,19 @@ class FileSaved_Menu(Screen):
     def go_back(self):
         Screen.current = 0
         Screen.switch_frame()    
+
+class PopMessage(tk.Frame):
+    def __init__(self, parent, msg = "generic"):
+        tk.Frame.__init__(self, master=parent)
+        self.parent = parent
+        
+        self.lbl_continue = tk.Label(self, text = msg)
+        self.lbl_continue.grid(row = 0, column = 2)
+        
+        self.btn_ok = tk.Button(self, text = "OK", command = self.parent.destroy)
+        self.btn_ok.grid(row = 1, column = 2)
+        
+
 
 ##MAIN
 
