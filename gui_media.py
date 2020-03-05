@@ -233,8 +233,7 @@ class SearchMenu(Screen):
             if self.tkvar.get() == self.options[1]:                
                 if keyword in entry[0]:
                     self.filter_print(entry)
-                    
-                    
+                          
             if self.tkvar.get() == self.options[2]:
                 if keyword in entry[1]:
                     self.filter_print(entry)     
