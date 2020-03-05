@@ -71,8 +71,7 @@ class MainMenu(Screen):
         Screen.switch_frame()
         
     def go_save(self):
-        Screen.current = 5
-        Screen.switch_frame()
+        ()
         
 class SearchMenu(Screen):
     def __init__(self):
@@ -206,6 +205,16 @@ class SearchMenu(Screen):
         self.btn_filters.tkvar_notes.set(False)
         
         self.scr_txt.delete(0.0, "end")
+        
+    def print_search(self):
+        self.scr_txt.delete(0.0, "end")
+        
+        keyword = self.ent_search_for.get()
+        
+        for key in games.keys():
+            if self.tkvar.get == self.options[0]:
+                entry = games[key]
+                self.filter_print(entry)
         
         
     def submit_search(self):
@@ -508,9 +517,9 @@ class Edit_Menu(Screen):
         
                 
         
-        #self.grid_columnconfigure(0, weight = 1)
-        #self.grid_columnconfigure(1, weight = 1)
-        #self.grid_columnconfigure(2, weight = 1)
+        self.grid_columnconfigure(0, weight = 1)
+        self.grid_columnconfigure(1, weight = 1)
+        self.grid_columnconfigure(2, weight = 1)
         
         options = ["one", "two"]
         self.tkvar = tk.StringVar(self)
