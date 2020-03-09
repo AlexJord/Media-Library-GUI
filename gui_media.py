@@ -71,7 +71,12 @@ class MainMenu(Screen):
         Screen.switch_frame()
         
     def go_save(self):
-        ()
+        Screen.current = 5
+        Screen.switch_frame()
+        datafile = open("game_lib.pickle", "wb")
+        pickle.dump(games, datafile)
+        datafile.close()        
+        
         
 class SearchMenu(Screen):
     def __init__(self):
@@ -803,7 +808,10 @@ class FileSaved_Menu(Screen):
         
     def go_back(self):
         Screen.current = 0
-        Screen.switch_frame()    
+        msg.showinfo(message="Entry has been added.")
+        Screen.switch_frame()            
+
+
 
 class PopMessage(tk.Frame):
     def __init__(self, parent, msg = "generic"):
@@ -833,7 +841,8 @@ if __name__ == "__main__":
               AddMenu(),
               Edit_Menu(),
               SearchMenu(),
-              Remove_Menu()
+              Remove_Menu(),
+              FileSaved_Menu()
              ]
     
     screens[0].grid(row = 0, column = 0, sticky = "news")
@@ -841,6 +850,7 @@ if __name__ == "__main__":
     screens[2].grid(row = 0, column = 0, sticky = "news")
     screens[3].grid(row = 0, column = 0, sticky = "news")
     screens[4].grid(row = 0, column = 0, sticky = "news")
+    screens[5].grid(row = 0, column = 0, sticky = "news")
     
     
     screens[0].tkraise()
