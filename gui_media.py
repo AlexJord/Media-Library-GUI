@@ -67,11 +67,13 @@ class MainMenu(Screen):
         Screen.switch_frame()
         
     def go_remove(self):
-        Screen.current = 4
-        Screen.switch_frame()
+        pop_up = tk.Tk()
+        pop_up.title("Remove")
+        frm_edit_list = Remove_Menu(pop_up)
+        frm_edit_list.grid(row = 0, column = 0)
         
     def go_save(self):
-        Screen.current = 5
+        Screen.current = 4
         Screen.switch_frame()
         datafile = open("game_lib.pickle", "wb")
         pickle.dump(games, datafile)
@@ -762,18 +764,20 @@ class EditSelection(tk.Frame):
     
 
 
-class Remove_Menu(Screen):
-    def __init__(self):
-        Screen.__init__(self)    
+class Remove_Menu(tk.Frame):
+    def __init__(self, parent):
+        tk.Frame.__init__(self, master=parent)    
 
         self.lbl_title = tk.Label(self, text = "Which title to remove: ", font = TITLE_FONT)
         self.lbl_title.grid(row = 0, column = 1, sticky = "news") 
         
-        options = ["one", "two"] 
+        self.options = ["Enter your selection"]
+        for key in games.keys():
+            self.options.append(games[key][1])         
         self.tkvar = tk.StringVar(self)
-        self.tkvar.set(options[0])
+        self.tkvar.set(self.options[0])
         
-        self.ent_box1 = tk.OptionMenu(self, self.tkvar, *options)
+        self.ent_box1 = tk.OptionMenu(self, self.tkvar, *self.options)
         self.ent_box1.grid(row = 2, column = 1, sticky = "news")         
         
         self.grid_columnconfigure(0, weight = 1)
@@ -783,12 +787,31 @@ class Remove_Menu(Screen):
         self.btn_back = tk.Button(self, text = "Back", command = self.go_back, font = BUTTON_FONT)
         self.btn_back.grid(row = 6, column = 0, sticky = "news")   
         
-        self.btn_ok = tk.Button(self, text = "Remove", font = BUTTON_FONT)
+        self.btn_ok = tk.Button(self, text = "Remove", command = self.remove_game, font = BUTTON_FONT)
         self.btn_ok.grid(row = 6, column = 2, sticky = "news")  
         
     def go_back(self):
-        Screen.current = 0
-        Screen.switch_frame()    
+        self.master.destroy()
+        
+    def remove_game(self):
+        
+        remove_key = 0
+        for key in range(1,len(games)):
+            entry = games[key]
+            if entry[1] == self.tkvar.get():
+                remove_key = key
+            
+        
+        
+        for keys in range(1, len(games) + 1):
+            if keys >= remove_key and keys != len(games):
+                games[keys] = games[keys + 1]
+            else:
+                if keys == len(games):
+                    games.pop(keys)   
+                    
+        self.master.destroy()    
+       
         
 class FileSaved_Menu(Screen):
     def __init__(self):
@@ -841,7 +864,6 @@ if __name__ == "__main__":
               AddMenu(),
               Edit_Menu(),
               SearchMenu(),
-              Remove_Menu(),
               FileSaved_Menu()
              ]
     
@@ -850,7 +872,7 @@ if __name__ == "__main__":
     screens[2].grid(row = 0, column = 0, sticky = "news")
     screens[3].grid(row = 0, column = 0, sticky = "news")
     screens[4].grid(row = 0, column = 0, sticky = "news")
-    screens[5].grid(row = 0, column = 0, sticky = "news")
+
     
     
     screens[0].tkraise()
