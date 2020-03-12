@@ -45,7 +45,10 @@ class MainMenu(Screen):
         self.btn_remove.grid(row = 4, column = 1)    
         
         self.btn_save = tk.Button(self, text = "Save", command = self.go_save, font = BUTTON_FONT)
-        self.btn_save.grid(row = 5, column = 1)        
+        self.btn_save.grid(row = 5, column = 1)    
+        
+        self.btn_exit = tk.Button(self, text = "Exit", command = self.go_exit, font = BUTTON_FONT)
+        self.btn_exit.grid(row = 6, column = 1)
         
         self.grid_columnconfigure(0, weight = 1)
         self.grid_columnconfigure(1, weight = 1)
@@ -77,7 +80,10 @@ class MainMenu(Screen):
         Screen.switch_frame()
         datafile = open("game_lib.pickle", "wb")
         pickle.dump(games, datafile)
-        datafile.close()        
+        datafile.close()   
+        
+    def go_exit(self):
+        quit()
         
         
 class SearchMenu(Screen):
